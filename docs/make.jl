@@ -1,7 +1,12 @@
 using GravitationalPotentials
 using Documenter
 
-DocMeta.setdocmeta!(GravitationalPotentials, :DocTestSetup, :(using GravitationalPotentials); recursive=true)
+DocMeta.setdocmeta!(
+    GravitationalPotentials,
+    :DocTestSetup,
+    :(using GravitationalPotentials);
+    recursive=true
+)
 
 makedocs(;
     modules=[GravitationalPotentials],
