@@ -1,0 +1,3 @@
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+GravitationalPotentials = "c5ecfa00-e6a4-4f27-837b-868bffbab2ae"
