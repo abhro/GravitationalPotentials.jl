@@ -19,7 +19,7 @@ Model for a uniform density sphere centered at the origin.
 
 See also [the implementation of `mass_density` for this type](@ref mass_density(::UniformSphereDensity, ::Any, ::Any, ::Any)).
 """
-struct UniformSphereDensity <: MassDensityModel
+@kwdef struct UniformSphereDensity <: MassDensityModel
     radius::Float64
     density::Float64
 end
@@ -38,7 +38,7 @@ Model for a sphere with a power law density centered at the origin.
 
 See also [the implementation of `mass_density` for this type](@ref mass_density(::PowerLawSphereDensity, ::Any, ::Any, ::Any)).
 """
-struct PowerLawSphereDensity <: MassDensityModel
+@kwdef struct PowerLawSphereDensity <: MassDensityModel
     radius::Float64
     scale_density::Float64
     scale_radius::Float64
@@ -57,7 +57,7 @@ Model for a uniform density cylinder centered at the origin.
 
 See also [the implementation of `mass_density` for this type](@ref mass_density(::UniformCylinderDensity, ::Any, ::Any, ::Any)).
 """
-struct UniformCylinderDensity <: MassDensityModel
+@kwdef struct UniformCylinderDensity <: MassDensityModel
     radius::Float64
     height::Float64
     density::Float64
@@ -81,7 +81,7 @@ and the disk is modeled as a uniform density cylinder.
 
 See also [the implementation of `mass_density` for this type](@ref mass_density(::SpiralGalaxyDensity, ::Any, ::Any, ::Any)).
 """
-struct SpiralGalaxyDensity <: MassDensityModel
+@kwdef struct SpiralGalaxyDensity <: MassDensityModel
     bulge_radius::Float64
     disk_radius::Float64
     disk_height::Float64
