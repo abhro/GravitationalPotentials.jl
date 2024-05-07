@@ -1,7 +1,7 @@
 name = "GravitationalPotentials"
 uuid = "c5ecfa00-e6a4-4f27-837b-868bffbab2ae"
 authors = ["Abhro R. and contributors"]
-version = "1.0.0-DEV"
+version = "0.0.0-DEV"
 
 [compat]
 julia = "1.6"
