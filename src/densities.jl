@@ -154,7 +154,7 @@ end
 Density model
 ```math
 ρ(s, φ, z) = \begin{cases}
-    ρ_0 & \text{if } s ≤ R_c, z ≤ H_c \\
+    ρ_0 & \text{if } s ≤ R_c, |z| ≤ H_c \\
     0 & \text{otherwise}
 \end{cases}
 ```
@@ -164,7 +164,7 @@ where
 - ``H_c`` = `model.height`
 """
 function mass_density(model::UniformCylinderDensity, s, φ, z)
-    if s ≤ model.radius && z ≤ model.height
+    if s ≤ model.radius && abs(z) ≤ model.height
         return model.density
     end
     return 0.0
