@@ -2,6 +2,6 @@
 
 module GravitationalPotentials
 
-# Write your package code here.
+include("densities.jl")
 
 end
