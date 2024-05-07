@@ -90,6 +90,9 @@ See also [the implementation of `mass_density` for this type](@ref mass_density(
     disk_density::Float64
 end
 
+# the models should be treated as scalars when broadcasting
+Base.broadcastable(m::MassDensityModel) = Ref(m)
+
 
 """
     mass_density(model::MassDensityModel, s, φ, z)
