@@ -8,6 +8,21 @@ should have a corresponding [`mass_density`](@ref) implementation.
 """
 abstract type MassDensityModel end
 
+# the models should be treated as scalars when broadcasting
+Base.broadcastable(m::MassDensityModel) = Ref(m)
+
+
+"""
+    mass_density(model::MassDensityModel, s, φ, z)
+
+Given a mass density profile/model, return the corresponding mass density at
+cylindrical coordinates ``(s, φ, z)``.
+"""
+function mass_density end
+
+mass_density(model::MassDensityModel, rvec::NTuple{3,<:Real}) =
+    mass_density(model, rvec[1], rvec[2], rvec[3])
+
 """
     UniformSphereDensity <: MassDensityModel
 
@@ -22,6 +37,28 @@ See also [the implementation of `mass_density` for this type](@ref mass_density(
 Base.@kwdef struct UniformSphereDensity <: MassDensityModel
     radius::Float64
     density::Float64
+end
+
+@doc raw"""
+    mass_density(model::UniformSphereDensity, s, φ, z)
+
+Density model
+```math
+ρ(s, φ, z) = \begin{cases}
+    ρ_s & \text{if } \sqrt{s^2 + z^2} ≤ R_s \\
+    0 & \text{otherwise}
+\end{cases}
+```
+where
+- ``ρ_s`` = `model.density`
+- ``R_s`` = `model.radius`
+"""
+function mass_density(model::UniformSphereDensity, s, φ, z)
+    rad = hypot(s, z)
+    if rad ≤ model.radius
+        return model.density
+    end
+    return 0.0
 end
 
 """
@@ -45,6 +82,30 @@ Base.@kwdef struct PowerLawSphereDensity <: MassDensityModel
     alpha::Float64
 end
 
+@doc raw"""
+    mass_density(model::PowerLawSphereDensity, s, φ, z)
+
+Density model
+```math
+ρ(s, φ, z) = \begin{cases}
+    ρ_0 \left(\sqrt{s^2 + z^2}/R_0\right)^α & \text{if } \sqrt{s^2 + z^2} ≤ R_s \\
+    0 & \text{otherwise}
+\end{cases}
+```
+where
+- ``ρ_0`` = `model.scale_density`
+- ``R_0`` = `model.scale_radius`
+- ``α`` = `model.alpha`
+- ``R_s`` = `model.radius`
+"""
+function mass_density(model::PowerLawSphereDensity, s, φ, z)
+    rad = hypot(s, z)
+    if rad ≤ model.radius
+        return model.scale_density * (rad / model.scale_radius) ^ model.alpha
+    end
+    return 0.0
+end
+
 """
     UniformCylinderDensity <: MassDensityModel
 
@@ -61,6 +122,28 @@ Base.@kwdef struct UniformCylinderDensity <: MassDensityModel
     radius::Float64
     height::Float64
     density::Float64
+end
+
+@doc raw"""
+    mass_density(model::UniformCylinderDensity, s, φ, z)
+
+Density model
+```math
+ρ(s, φ, z) = \begin{cases}
+    ρ_0 & \text{if } s ≤ R_c, |z| ≤ H_c \\
+    0 & \text{otherwise}
+\end{cases}
+```
+where
+- ``ρ_0`` = `model.density`
+- ``R_c`` = `model.radius`
+- ``H_c`` = `model.height`
+"""
+function mass_density(model::UniformCylinderDensity, s, φ, z)
+    if s ≤ model.radius && abs(z) ≤ model.height
+        return model.density
+    end
+    return 0.0
 end
 
 """
@@ -88,89 +171,6 @@ Base.@kwdef struct SpiralGalaxyDensity <: MassDensityModel
 
     bulge_density::Float64
     disk_density::Float64
-end
-
-# the models should be treated as scalars when broadcasting
-Base.broadcastable(m::MassDensityModel) = Ref(m)
-
-
-"""
-    mass_density(model::MassDensityModel, s, φ, z)
-
-Given a mass density profile/model, return the corresponding mass density at
-cylindrical coordinates ``(s, φ, z)``.
-"""
-function mass_density end
-
-mass_density(model::MassDensityModel, rvec::NTuple{3,<:Real}) =
-    mass_density(model, rvec[1], rvec[2], rvec[3])
-
-@doc raw"""
-    mass_density(model::UniformSphereDensity, s, φ, z)
-
-Density model
-```math
-ρ(s, φ, z) = \begin{cases}
-    ρ_s & \text{if } \sqrt{s^2 + z^2} ≤ R_s \\
-    0 & \text{otherwise}
-\end{cases}
-```
-where
-- ``ρ_s`` = `model.density`
-- ``R_s`` = `model.radius`
-"""
-function mass_density(model::UniformSphereDensity, s, φ, z)
-    rad = hypot(s, z)
-    if rad ≤ model.radius
-        return model.density
-    end
-    return 0.0
-end
-
-@doc raw"""
-    mass_density(model::PowerLawSphereDensity, s, φ, z)
-
-Density model
-```math
-ρ(s, φ, z) = \begin{cases}
-    ρ_0 \left(\sqrt{s^2 + z^2}/R_0\right)^α & \text{if } \sqrt{s^2 + z^2} ≤ R_s \\
-    0 & \text{otherwise}
-\end{cases}
-```
-where
-- ``ρ_0`` = `model.scale_density`
-- ``R_0`` = `model.scale_radius`
-- ``α`` = `model.alpha`
-- ``R_s`` = `model.radius`
-"""
-function mass_density(model::PowerLawSphereDensity, s, φ, z)
-    rad = hypot(s, z)
-    if rad ≤ model.radius
-        return model.scale_density * (rad / model.scale_radius) ^ model.alpha
-    end
-    return 0.0
-end
-
-@doc raw"""
-    mass_density(model::UniformCylinderDensity, s, φ, z)
-
-Density model
-```math
-ρ(s, φ, z) = \begin{cases}
-    ρ_0 & \text{if } s ≤ R_c, |z| ≤ H_c \\
-    0 & \text{otherwise}
-\end{cases}
-```
-where
-- ``ρ_0`` = `model.density`
-- ``R_c`` = `model.radius`
-- ``H_c`` = `model.height`
-"""
-function mass_density(model::UniformCylinderDensity, s, φ, z)
-    if s ≤ model.radius && abs(z) ≤ model.height
-        return model.density
-    end
-    return 0.0
 end
 
 @doc raw"""
