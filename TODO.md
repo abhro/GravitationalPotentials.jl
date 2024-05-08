@@ -1,0 +1,11 @@
+# To-do list
+- [ ] Write tests for density models
+  - [ ] Write tests for uniform sphere model
+  - [ ] Write tests for uniform cylinder model
+  - [ ] Write tests for power law sphere model
+  - [ ] Write tests for spiral galaxy model
+- [ ] Write rough draft of potential function
+- [ ] Write analytical solutions for potential functions
+  - [ ] Write potential function for uniform sphere
+  - [ ] Write potential function for power law sphere
+- [ ] Add [Navarro–Frenk–White density profile](https://en.wikipedia.org/wiki/Navarro%E2%80%93Frenk%E2%80%93White_profile) to density models
