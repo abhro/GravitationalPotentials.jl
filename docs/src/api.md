@@ -9,6 +9,12 @@ Documentation for [GravitationalPotentials](https://github.com/abhro/Gravitation
 ```
 
 ## Docstrings
+
+```@docs
+MassDensityModel
+```
+
 ```@autodocs
 Modules = [GravitationalPotentials]
+Filter = t -> t !== MassDensityModel
 ```
