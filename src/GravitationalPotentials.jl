@@ -10,5 +10,7 @@ export UniformSphereDensity
 export PowerLawSphereDensity
 export UniformCylinderDensity
 export SpiralGalaxyDensity
+export EinastoDensity
+
 
 end
