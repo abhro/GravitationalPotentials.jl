@@ -80,6 +80,14 @@ Base.@kwdef struct PowerLawSphereDensity <: MassDensityModel
     scale_density::Float64
     scale_radius::Float64
     alpha::Float64
+
+    function PowerLawSphereDensity(radius, scale_density, scale_radius, alpha)
+        if iszero(alpha)
+            throw(DomainError(
+                "alpha cannot be 0. For alpha = 0 use UniformSphereDensity."))
+        end
+        return new(radius, scale_density, scale_radius, alpha)
+    end
 end
 
 @doc raw"""
