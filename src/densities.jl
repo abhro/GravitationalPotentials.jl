@@ -102,6 +102,9 @@ cylindrical coordinates ``(s, φ, z)``.
 """
 function mass_density end
 
+mass_density(model::MassDensityModel, rvec::NTuple{3,<:Real}) =
+    mass_density(model, rvec[1], rvec[2], rvec[3])
+
 @doc raw"""
     mass_density(model::UniformSphereDensity, s, φ, z)
 
