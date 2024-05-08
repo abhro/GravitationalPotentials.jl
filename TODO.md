@@ -6,6 +6,6 @@
   - [ ] Write tests for spiral galaxy model
 - [ ] Write rough draft of potential function
 - [ ] Write analytical solutions for potential functions
-  - [ ] Write potential function for uniform sphere
+  - [x] Write potential function for uniform sphere
   - [ ] Write potential function for power law sphere
 - [ ] Add [Navarro–Frenk–White density profile](https://en.wikipedia.org/wiki/Navarro%E2%80%93Frenk%E2%80%93White_profile) to density models
