@@ -203,3 +203,47 @@ function mass_density(model::SpiralGalaxyDensity, s, φ, z)
 
     return 0.0
 end
+
+"""
+    EinastoDensity <: MassDensityModel
+
+# Fields
+- `central_density`
+- `harmonic_mean_radius`
+- `N`
+- `k`
+
+See [Einasto, J. and Haud, U., “Galactic models with massive corona. I. Method”,
+_Astronomy and Astrophysics_, vol. 223, no. 1, pp. 89–94,
+1989](https://ui.adsabs.harvard.edu/abs/1989A%26A...223...89E).
+
+See also [the implementation of `mass_density` for this type](@ref
+mass_density(::EinastoDensity, ::Any, ::Any, ::Any)).
+"""
+Base.@kwdef struct EinastoDensity <: MassDensityModel
+    central_density::Float64
+    harmonic_mean_radius::Float64
+    N::Float64
+    k::Float64
+end
+
+@doc raw"""
+    mass_density(model::EinastoDensity, s, φ, z)
+
+Density model
+```math
+ρ(s, φ, z) = ρ₀ \exp\left[-(a / k a₀)^{1/N}\right]
+```
+where
+- ``a = \sqrt{s^2 + z^2}``
+- ``ρ₀`` = `model.central_density`
+- ``a₀`` = `model.harmonic_mean_radius`
+- ``k`` = `model.k`
+- ``N`` = `model.N`
+"""
+function mass_density(model::EinastoDensity, s, φ, z)
+    a = hypot(s, z)
+    ρ₀ = model.central_density
+    a₀ = model.harmonic_mean_radius
+    return ρ₀ * exp(-(a / (model.k * a₀)^(1/model.N)))
+end
