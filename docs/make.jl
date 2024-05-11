@@ -23,3 +23,7 @@ makedocs(;
         "API reference" => "api.md",
     ],
 )
+
+deploydocs(;
+    repo="github.com/abhro/GravitationalPotentials.jl.git",
+)
