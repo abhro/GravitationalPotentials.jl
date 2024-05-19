@@ -263,7 +263,10 @@ md"""
 """
 
 # ╔═╡ 75215ba3-2dd2-478a-9423-c19cbb7d53b9
+@doc mass_density(::EinastoDensity, ::Any, ::Any, ::Any)
 
+# ╔═╡ ac20970f-2543-4cab-933a-ef4420d8e91e
+# TODO
 
 # ╔═╡ 43339592-2d27-4dee-875a-68e0388df9fd
 md"""
@@ -332,6 +335,7 @@ Pkg.status |> PlutoUI.with_terminal
 # ╠═d2dd3c5e-7feb-4068-857d-1ef31e51515b
 # ╟─344682c5-5240-4e6d-bd66-6bfb6b58195a
 # ╠═75215ba3-2dd2-478a-9423-c19cbb7d53b9
+# ╠═ac20970f-2543-4cab-933a-ef4420d8e91e
 # ╟─43339592-2d27-4dee-875a-68e0388df9fd
 # ╠═41aed17f-4dec-4902-9db3-4c02a9a196c5
 # ╠═d130ad8f-b41f-4849-b73c-f6d3315f08aa
