@@ -37,9 +37,6 @@ md"""
 Use a shared environment for all notebooks demonstrating GravitationalPotentials.jl
 """
 
-# ╔═╡ 1e9253e7-3d18-4d47-a0ea-93a3040bd85f
-Base.current_project()
-
 # ╔═╡ 301c7650-f3b9-4acf-9674-f4a4aa45e5d9
 PlutoUI.TableOfContents()
 
