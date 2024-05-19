@@ -31,7 +31,7 @@ Density model
 ρ(s, φ, z) = ρ₀ \exp\left[-(a / k a₀)^{1/N}\right]
 ```
 where
-- ``a = √{s² + z²}``
+- ``a = \sqrt{s² + z²}``
 - ``ρ₀`` = `model.ρ₀`
 - ``a₀`` = `model.a₀`
 - ``k`` = `model.k`
