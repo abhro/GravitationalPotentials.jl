@@ -67,7 +67,7 @@ sphere_points = Iterators.product(sphere_srange, 0.0, sphere_zrange) # |> collec
 @bind sphere_density NumberField(0:0.1:1000, default=1.9)
 
 # ╔═╡ bd760423-b837-4e3d-ab29-e0400baba63b
-sphere_model = UniformSphereDensity(radius=sphere_radius, density=sphere_density)
+sphere_model = UniformSphereDensity(rₛ=sphere_radius, ρₛ=sphere_density)
 
 # ╔═╡ 96350e8b-6663-4c11-b21b-299e4e55e796
 sphere_densities = mass_density.(sphere_model, sphere_points)
@@ -154,7 +154,7 @@ Density: $(@bind pls_density NumberField(0:0.1:1000, default=1.9)) $br
 """
 
 # ╔═╡ b033332a-546f-4786-abd5-68300cebc1d8
-pls_model = PowerLawSphereDensity(radius=pls_radius, scale_density=pls_density, scale_radius=pls_scale_radius, alpha=pls_alpha)
+pls_model = PowerLawSphereDensity(rₛ=pls_radius, ρ₀=pls_density, r₀=pls_scale_radius, α=pls_alpha)
 
 # ╔═╡ 7d9ec66e-31ad-4f9f-8d24-a986b88dd8ba
 pls_srange = range(0, 3, length=1000) * pls_radius
@@ -222,12 +222,12 @@ Disk density: $(@bind sg_disk_density NumberField(0:0.1:1000, default=30)) $br
 
 # ╔═╡ ac6bbf27-68fc-49a1-8e91-28cedb283747
 sg_model = SpiralGalaxyDensity(
-    bulge_radius=sg_bulge_radius,
-    disk_radius=sg_disk_radius,
-    disk_height=sg_disk_height,
+    r_bulge=sg_bulge_radius,
+    r_disk=sg_disk_radius,
+    h_disk=sg_disk_height,
 
-    bulge_density=sg_bulge_density,
-    disk_density=sg_disk_density,
+    ρ_bulge=sg_bulge_density,
+    ρ_disk=sg_disk_density,
 )
 
 # ╔═╡ 1fb90ff8-3829-4e57-aba1-a2389317c1ab
