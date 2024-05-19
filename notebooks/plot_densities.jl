@@ -186,7 +186,10 @@ md"""
 """
 
 # ╔═╡ 8f01c85b-98d9-4e97-ba6a-8b09dbff1cfc
+@doc mass_density(::PowerLawCylinderDensity, ::Any, ::Any, ::Any)
 
+# ╔═╡ 0f1ec854-0011-4c3f-9a8b-ecf59faa87a7
+# TODO
 
 # ╔═╡ 3f975e70-3c53-4acc-9711-a5b47e31f1fe
 md"""
@@ -275,7 +278,6 @@ Pkg.status |> PlutoUI.with_terminal
 
 # ╔═╡ Cell order:
 # ╟─0bdb3651-c955-4fb1-839f-8590bf2b2641
-# ╠═1e9253e7-3d18-4d47-a0ea-93a3040bd85f
 # ╠═11757236-0cad-11ef-3235-69829e674f28
 # ╠═90748e84-e2c3-43ff-b61b-900f1fed2a4f
 # ╠═8b711cb6-5a1f-4831-a136-ab6f1b96b1ec
@@ -315,6 +317,7 @@ Pkg.status |> PlutoUI.with_terminal
 # ╠═6b9f6955-8637-4f9a-9fe5-064e5534dbed
 # ╟─2801a802-33cd-4617-983a-2c66d530ebf1
 # ╠═8f01c85b-98d9-4e97-ba6a-8b09dbff1cfc
+# ╠═0f1ec854-0011-4c3f-9a8b-ecf59faa87a7
 # ╟─3f975e70-3c53-4acc-9711-a5b47e31f1fe
 # ╠═ba03a17e-5bdb-4138-aa23-b891724aa0db
 # ╟─fd2bd6b9-c1f8-469b-8fe0-aa4e7a12cec6
