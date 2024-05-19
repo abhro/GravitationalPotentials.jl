@@ -34,7 +34,7 @@ where
 - ``H_c`` = `model.h_c`
 """
 function mass_density(model::UniformCylinderDensity, s, φ, z)
-    if s ≤ model.r_h && abs(z) ≤ model.h_c
+    if s ≤ model.r_c && abs(z) ≤ model.h_c
         return model.ρ_c
     end
     return 0.0
