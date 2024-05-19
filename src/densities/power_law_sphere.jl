@@ -50,3 +50,8 @@ function mass_density(model::PowerLawSphereDensity, s, φ, z)
     end
     return 0.0
 end
+
+function mass(model::PowerLawSphereDensity)
+    α = model.alpha
+    return 4π/(α+3) * (model.radius/model.scale_radius)^α * model.radius^3
+end
