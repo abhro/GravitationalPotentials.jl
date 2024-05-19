@@ -51,7 +51,7 @@ function mass_density(model::SpiralGalaxyDensity, s, φ, z)
     if rad ≤ model.r_bulge
         return model.ρ_bulge
     end
-    if s ≤ model.disk_radius && abs(z) ≤ model.disk_height
+    if s ≤ model.r_disk && abs(z) ≤ model.h_disk
         return model.ρ_disk
     end
 
