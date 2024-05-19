@@ -9,6 +9,7 @@ export MassDensityModel
 export UniformSphereDensity
 export PowerLawSphereDensity
 export UniformCylinderDensity
+export PowerLawCylinderDensity
 export SpiralGalaxyDensity
 export EinastoDensity
 
