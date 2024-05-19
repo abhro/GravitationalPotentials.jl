@@ -27,5 +27,6 @@ mass_density(model::MassDensityModel, rvec::NTuple{3,<:Real}) =
 include("densities/uniform_sphere.jl")
 include("densities/power_law_sphere.jl")
 include("densities/uniform_cylinder.jl")
+include("densities/power_law_cylinder.jl")
 include("densities/spiral_galaxy.jl")
 include("densities/einasto.jl")
