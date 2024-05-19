@@ -50,3 +50,12 @@ function mass_density(model::PowerLawCylinderDensity, s, φ, z)
     end
     return 0.0
 end
+
+function mass(model::PowerLawCylinderDensity)
+    α = model.α
+    β = model.β
+    return π *
+           model.r_c^(α+2) / ((α + 2) * model.r₀^α) *
+           model.h_c^(β+1) / ((β+1) * mode.h₀^β) *
+           model.ρ_0
+end
