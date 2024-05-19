@@ -257,6 +257,14 @@ heatmap(
     #colormap=:pastel,
 )
 
+# ╔═╡ 344682c5-5240-4e6d-bd66-6bfb6b58195a
+md"""
+# Einasto density model
+"""
+
+# ╔═╡ 75215ba3-2dd2-478a-9423-c19cbb7d53b9
+
+
 # ╔═╡ 43339592-2d27-4dee-875a-68e0388df9fd
 md"""
 # Build information
@@ -286,17 +294,6 @@ Pkg.status |> PlutoUI.with_terminal
 # ╠═0ceefa8f-e1dd-4b16-a22c-b5ce4e8f3f31
 # ╠═1ceee843-941f-4fd6-af44-24e891635a96
 # ╠═8f9905a0-1b9d-497b-8392-c82a4698108b
-# ╟─197d20f9-ca47-484c-b61b-654b82d25589
-# ╠═cba46d67-b50a-4afb-9b4c-76851501cd63
-# ╟─0e6b434b-a45c-4229-924b-840aa20ef4da
-# ╠═c6c0f77f-0820-4516-90f1-4c9b6c182dca
-# ╠═c9424081-3542-47d8-a4bc-a2945e264203
-# ╠═29ad731e-68d7-4615-b329-7f299c637a7f
-# ╠═0f910773-a5c8-44aa-975a-bfa16e7e8b3e
-# ╠═0bd6a691-dc93-49ee-a5b7-ccb7d4073582
-# ╟─18f75cfc-6266-4fc7-9d67-af20d4ca9ab8
-# ╟─9f3375fd-3f5f-470b-962a-4d27db8beb70
-# ╠═6b9f6955-8637-4f9a-9fe5-064e5534dbed
 # ╟─24ddf139-dec8-4c37-b29d-6fcbd6594662
 # ╠═1043fc7e-20dc-411c-80b8-3cfa909762c1
 # ╟─df25a618-046e-48a1-918e-19d3978ef296
@@ -308,6 +305,19 @@ Pkg.status |> PlutoUI.with_terminal
 # ╟─213b4a3d-187e-4023-a4fb-fb0d4886f7f7
 # ╟─33405c03-a162-4eac-9dd0-034628a0cbfe
 # ╠═8eb8be16-fcfb-4ceb-a698-d4d2a99a65e2
+# ╟─197d20f9-ca47-484c-b61b-654b82d25589
+# ╠═cba46d67-b50a-4afb-9b4c-76851501cd63
+# ╟─0e6b434b-a45c-4229-924b-840aa20ef4da
+# ╠═c6c0f77f-0820-4516-90f1-4c9b6c182dca
+# ╠═c9424081-3542-47d8-a4bc-a2945e264203
+# ╠═29ad731e-68d7-4615-b329-7f299c637a7f
+# ╠═0f910773-a5c8-44aa-975a-bfa16e7e8b3e
+# ╠═0bd6a691-dc93-49ee-a5b7-ccb7d4073582
+# ╟─18f75cfc-6266-4fc7-9d67-af20d4ca9ab8
+# ╟─9f3375fd-3f5f-470b-962a-4d27db8beb70
+# ╠═6b9f6955-8637-4f9a-9fe5-064e5534dbed
+# ╟─2801a802-33cd-4617-983a-2c66d530ebf1
+# ╠═8f01c85b-98d9-4e97-ba6a-8b09dbff1cfc
 # ╟─3f975e70-3c53-4acc-9711-a5b47e31f1fe
 # ╠═ba03a17e-5bdb-4138-aa23-b891724aa0db
 # ╟─fd2bd6b9-c1f8-469b-8fe0-aa4e7a12cec6
@@ -320,6 +330,8 @@ Pkg.status |> PlutoUI.with_terminal
 # ╟─50b1cf85-e197-4e69-b112-f3c88eeb35e9
 # ╟─06cc023c-0b5f-4755-a563-57011f198702
 # ╠═d2dd3c5e-7feb-4068-857d-1ef31e51515b
+# ╟─344682c5-5240-4e6d-bd66-6bfb6b58195a
+# ╠═75215ba3-2dd2-478a-9423-c19cbb7d53b9
 # ╟─43339592-2d27-4dee-875a-68e0388df9fd
 # ╠═41aed17f-4dec-4902-9db3-4c02a9a196c5
 # ╠═d130ad8f-b41f-4849-b73c-f6d3315f08aa
