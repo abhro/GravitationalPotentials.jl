@@ -81,56 +81,6 @@ heatmap(
     title="Uniform density sphere model",
 )
 
-# ╔═╡ 197d20f9-ca47-484c-b61b-654b82d25589
-md"""
-# Uniform density cylinder
-"""
-
-# ╔═╡ cba46d67-b50a-4afb-9b4c-76851501cd63
-@doc mass_density(::UniformCylinderDensity, ::Any, ::Any, ::Any)
-
-# ╔═╡ 0e6b434b-a45c-4229-924b-840aa20ef4da
-md"""
-## Calculate density
-"""
-
-# ╔═╡ 18f75cfc-6266-4fc7-9d67-af20d4ca9ab8
-md"""
-## Control cylinder model parameters
-Radius: $(@bind cylinder_radius NumberField(0:0.1:1000, default=2)) $br
-Height: $(@bind cylinder_height NumberField(0:0.1:1000, default=0.5)) $br
-Density: $(@bind cylinder_density NumberField(0:0.1:1000, default=0.5)) $br
-"""
-
-# ╔═╡ c6c0f77f-0820-4516-90f1-4c9b6c182dca
-cylinder_model = UniformCylinderDensity(radius=cylinder_radius, height=cylinder_height, density=cylinder_density)
-
-# ╔═╡ c9424081-3542-47d8-a4bc-a2945e264203
-cyl_srange = range(0, 1.5, length=1000) * cylinder_radius
-
-# ╔═╡ 29ad731e-68d7-4615-b329-7f299c637a7f
-cyl_zrange = range(-1.5, 1.5, length=100) * cylinder_height
-
-# ╔═╡ 0f910773-a5c8-44aa-975a-bfa16e7e8b3e
-cylinder_points = Iterators.product(cyl_srange, 0.0, cyl_zrange);
-
-# ╔═╡ 0bd6a691-dc93-49ee-a5b7-ccb7d4073582
-cylinder_densities = mass_density.(cylinder_model, cylinder_points)
-
-# ╔═╡ 9f3375fd-3f5f-470b-962a-4d27db8beb70
-md"""
-## Plot cylinder density model
-"""
-
-# ╔═╡ 6b9f6955-8637-4f9a-9fe5-064e5534dbed
-heatmap(
-    cyl_srange, cyl_zrange,
-    cylinder_densities,
-    transpose=true,
-    xlabel="s →", ylabel="z →",
-    title="Uniform density cylinder model",
-)
-
 # ╔═╡ 24ddf139-dec8-4c37-b29d-6fcbd6594662
 md"""
 # Power law sphere
@@ -182,6 +132,64 @@ heatmap(
     title="Power law sphere density model",
     colormap=:jet,
 )
+
+# ╔═╡ 197d20f9-ca47-484c-b61b-654b82d25589
+md"""
+# Uniform density cylinder
+"""
+
+# ╔═╡ cba46d67-b50a-4afb-9b4c-76851501cd63
+@doc mass_density(::UniformCylinderDensity, ::Any, ::Any, ::Any)
+
+# ╔═╡ 0e6b434b-a45c-4229-924b-840aa20ef4da
+md"""
+## Calculate density
+"""
+
+# ╔═╡ 18f75cfc-6266-4fc7-9d67-af20d4ca9ab8
+md"""
+## Control cylinder model parameters
+Radius: $(@bind cylinder_radius NumberField(0:0.1:1000, default=2)) $br
+Height: $(@bind cylinder_height NumberField(0:0.1:1000, default=0.5)) $br
+Density: $(@bind cylinder_density NumberField(0:0.1:1000, default=0.5)) $br
+"""
+
+# ╔═╡ c6c0f77f-0820-4516-90f1-4c9b6c182dca
+cylinder_model = UniformCylinderDensity(r_c=cylinder_radius, h_c=cylinder_height, ρ_c=cylinder_density)
+
+# ╔═╡ c9424081-3542-47d8-a4bc-a2945e264203
+cyl_srange = range(0, 1.5, length=1000) * cylinder_radius
+
+# ╔═╡ 29ad731e-68d7-4615-b329-7f299c637a7f
+cyl_zrange = range(-1.5, 1.5, length=100) * cylinder_height
+
+# ╔═╡ 0f910773-a5c8-44aa-975a-bfa16e7e8b3e
+cylinder_points = Iterators.product(cyl_srange, 0.0, cyl_zrange);
+
+# ╔═╡ 0bd6a691-dc93-49ee-a5b7-ccb7d4073582
+cylinder_densities = mass_density.(cylinder_model, cylinder_points)
+
+# ╔═╡ 9f3375fd-3f5f-470b-962a-4d27db8beb70
+md"""
+## Plot cylinder density model
+"""
+
+# ╔═╡ 6b9f6955-8637-4f9a-9fe5-064e5534dbed
+heatmap(
+    cyl_srange, cyl_zrange,
+    cylinder_densities,
+    transpose=true,
+    xlabel="s →", ylabel="z →",
+    title="Uniform density cylinder model",
+)
+
+# ╔═╡ 2801a802-33cd-4617-983a-2c66d530ebf1
+md"""
+# Power law cylinder
+"""
+
+# ╔═╡ 8f01c85b-98d9-4e97-ba6a-8b09dbff1cfc
+
 
 # ╔═╡ 3f975e70-3c53-4acc-9711-a5b47e31f1fe
 md"""
