@@ -6,15 +6,16 @@
 Model for a uniform density cylinder centered at the origin.
 
 # Fields
-- `r_c`: radius of the cylinder
-- `h_c`: height of the cylinder
-- `ρ_c`: density of the cylinder
+$(TYPEDFIELDS)
 
 See also [the implementation of `mass_density` for this type](@ref mass_density(::UniformCylinderDensity, ::Any, ::Any, ::Any)).
 """
 Base.@kwdef struct UniformCylinderDensity <: MassDensityModel
+    "radius of the cylinder"
     r_c::Float64
+    "height of the cylinder"
     h_c::Float64
+    "density of the cylinder"
     ρ_c::Float64
 end
 

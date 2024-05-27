@@ -6,23 +6,24 @@
 Model for a cylinder with a power law density centered at the origin.
 
 # Fields
-- `r_c`: radius of the cylinder
-- `h_c`: height of the cylinder
-- `ρ₀`: scale density of the sphere
-- `r₀`: scale radius of the cylinder
-- `h₀`: scale height of the cylinder
-- `α`: power by which density changes with respect to radius
-- `β`: power by which density changes with respect to radius
+$(TYPEDFIELDS)
 
 See also [the implementation of `mass_density` for this type](@ref mass_density(::PowerLawCylinderDensity, ::Any, ::Any, ::Any)).
 """
 Base.@kwdef struct PowerLawCylinderDensity <: MassDensityModel
+    "radius of the cylinder"
     r_c::Float64
+    "height of the cylinder"
     h_c::Float64
+    "scale density of the sphere"
     ρ₀::Float64
+    "scale radius of the cylinder"
     r₀::Float64
+    "scale height of the cylinder"
     h₀::Float64
+    "power by which density changes with respect to radius"
     α::Float64
+    "power by which density changes with respect to height"
     β::Float64
 end
 

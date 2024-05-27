@@ -1,5 +1,7 @@
 # SPDX-License-Identifier: MIT
 
+using DocStringExtensions
+
 """
     MassDensityModel
 

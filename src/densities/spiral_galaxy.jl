@@ -10,20 +10,21 @@ The bulge is modeled as a uniform density sphere,
 and the disk is modeled as a uniform density cylinder.
 
 # Fields
-- `r_bulge`: radius of the bulge
-- `r_disk`: radius of the disk
-- `h_disk`: height of the disk
-- `ρ_bulge`: density of the bulge
-- `ρ_disk`: density of the cylinder
+$(TYPEDFIELDS)
 
 See also [the implementation of `mass_density` for this type](@ref mass_density(::SpiralGalaxyDensity, ::Any, ::Any, ::Any)).
 """
 Base.@kwdef struct SpiralGalaxyDensity <: MassDensityModel
+    "radius of the bulge"
     r_bulge::Float64
+    "radius of the disk"
     r_disk::Float64
+    "height of the disk"
     h_disk::Float64
 
+    "density of the bulge"
     ρ_bulge::Float64
+    "density of the disk"
     ρ_disk::Float64
 end
 

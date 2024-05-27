@@ -3,6 +3,9 @@ uuid = "c5ecfa00-e6a4-4f27-837b-868bffbab2ae"
 authors = ["Abhro R. and contributors"]
 version = "0.0.0-DEV"
 
+[deps]
+DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
+
 [compat]
 julia = "1.6"
 

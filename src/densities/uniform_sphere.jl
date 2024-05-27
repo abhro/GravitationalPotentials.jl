@@ -6,13 +6,14 @@
 Model for a uniform density sphere centered at the origin.
 
 # Fields
-- `rₛ`: radius of the sphere
-- `ρₛ`: density of the sphere
+$(TYPEDFIELDS)
 
 See also [the implementation of `mass_density` for this type](@ref mass_density(::UniformSphereDensity, ::Any, ::Any, ::Any)).
 """
 Base.@kwdef struct UniformSphereDensity <: MassDensityModel
+    "radius of the sphere"
     rₛ::Float64
+    "density of the sphere"
     ρₛ::Float64
 end
 

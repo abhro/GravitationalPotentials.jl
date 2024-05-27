@@ -6,17 +6,18 @@
 Model for a sphere with a power law density centered at the origin.
 
 # Fields
-- `rₛ`: radius of the sphere
-- `ρ₀`: scale density of the sphere, density changes by `r₀`^`α` at `radius` = `r₀`
-- `r₀`: scale radius of the sphere
-- `α`: power by which density reduces with respect to radius
+$(TYPEDFIELDS)
 
 See also [the implementation of `mass_density` for this type](@ref mass_density(::PowerLawSphereDensity, ::Any, ::Any, ::Any)).
 """
 Base.@kwdef struct PowerLawSphereDensity <: MassDensityModel
+    "radius of the sphere"
     rₛ::Float64
+    "scale density of the sphere, density changes by `r₀`^`α` at `radius` = `r₀`"
     ρ₀::Float64
+    "scale radius of the sphere"
     r₀::Float64
+    "power by which density reduces with respect to radius"
     α::Float64
 
     function PowerLawSphereDensity(rₛ, ρ₀, r₀, α)
