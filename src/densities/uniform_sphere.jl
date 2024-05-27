@@ -38,4 +38,4 @@ function mass_density(model::UniformSphereDensity, s, φ, z)
     return 0.0
 end
 
-mass(model::UniformSphereDensity) = 4π/3 * model.density * model.radius^3
+mass(model::UniformSphereDensity) = 4π/3 * model.ρₛ * model.rₛ^3

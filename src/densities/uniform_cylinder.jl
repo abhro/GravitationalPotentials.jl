@@ -40,4 +40,4 @@ function mass_density(model::UniformCylinderDensity, s, φ, z)
     return 0.0
 end
 
-mass(model::UniformCylinderDensity) = 2π*model.radius^2 * model.height * model.density
+mass(model::UniformCylinderDensity) = 2π*model.r_c^2 * model.h_c * model.ρ_c

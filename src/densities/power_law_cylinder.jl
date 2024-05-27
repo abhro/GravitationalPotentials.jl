@@ -46,7 +46,7 @@ where
 """
 function mass_density(model::PowerLawCylinderDensity, s, φ, z)
     if s ≤ model.r_c && z ≤ model.h_c
-        return model.ρ₀ * (s / model.r₀) ^ model.α * (z / model.h₀)^β
+        return model.ρ₀ * (s / model.r₀) ^ model.α * (z / model.h₀)^model.β
     end
     return 0.0
 end
