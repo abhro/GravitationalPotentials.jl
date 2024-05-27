@@ -23,6 +23,7 @@ Base.@kwdef struct PowerLawCylinderDensity <: MassDensityModel
     r₀::Float64
     h₀::Float64
     α::Float64
+    β::Float64
 end
 
 @doc raw"""
