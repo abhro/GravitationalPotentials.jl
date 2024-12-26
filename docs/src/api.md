@@ -10,6 +10,10 @@ Documentation for [GravitationalPotentials](https://github.com/abhro/Gravitation
 
 ## Docstrings
 
+```@docs
+bounds
+```
+
 ### Density models
 
 ```@docs
