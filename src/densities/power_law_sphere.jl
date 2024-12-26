@@ -20,7 +20,7 @@ Base.@kwdef struct PowerLawSphereDensity{L,MD} <: MassDensityModel
     "power by which density reduces with respect to radius"
     α::Float64
 
-    function PowerLawSphereDensity(rₛ, ρ₀, r₀, α)
+    function PowerLawSphereDensity{L,MD}(rₛ::L, ρ₀::MD, r₀::L, α) where {L,MD}
         if iszero(α)
             throw(DomainError(α, "α cannot be 0. For α = 0 use UniformSphereDensity."))
         end
