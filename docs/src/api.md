@@ -1,5 +1,5 @@
 
-# GravitationalPotentials
+# API reference
 
 Documentation for [GravitationalPotentials](https://github.com/abhro/GravitationalPotentials.jl).
 
