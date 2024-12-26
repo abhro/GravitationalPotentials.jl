@@ -12,6 +12,7 @@ Documentation for [GravitationalPotentials](https://github.com/abhro/Gravitation
 
 ```@docs
 bounds
+bounds_t
 ```
 
 ### Density models
