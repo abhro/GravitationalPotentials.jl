@@ -3,8 +3,7 @@
 using GravitationalPotentials
 using Test
 
-include("density_tests.jl")
 
 @testset "GravitationalPotentials.jl" begin
-    # Write your tests here.
+    include("density_tests.jl")
 end
