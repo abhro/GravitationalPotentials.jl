@@ -24,6 +24,8 @@ function mass_density end
 
 mass_density(model::MassDensityModel, rvec::NTuple{3,<:Real}) =
     mass_density(model, rvec[1], rvec[2], rvec[3])
+mass_density(model::MassDensityModel, rvec::AbstractVector) =
+    mass_density(model, rvec...)
 
 
 include("densities/uniform_sphere.jl")
