@@ -13,7 +13,7 @@ export UniformCylinderDensity
 export PowerLawCylinderDensity
 export SpiralGalaxyDensity
 export EinastoDensity
-
+export NFWDensity
 
 """Cylindrical coordinates bounds `[(s_lo, s_hi), (φ_lo, φ_hi), (z_lo, z_hi)]`"""
 function bounds end

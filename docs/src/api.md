@@ -53,3 +53,9 @@ mass_density(::SpiralGalaxyDensity, ::Any, ::Any, ::Any)
 EinastoDensity
 mass_density(::EinastoDensity, ::Any, ::Any, ::Any)
 ```
+
+#### Navarro–Frenk–White Profile
+```@docs
+NFWDensity
+mass_density(::NFWDensity, ::Any, ::Any, ::Any)
+```
