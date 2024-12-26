@@ -10,17 +10,17 @@ $(TYPEDFIELDS)
 
 See also [the implementation of `mass_density` for this type](@ref mass_density(::PowerLawCylinderDensity, ::Any, ::Any, ::Any)).
 """
-Base.@kwdef struct PowerLawCylinderDensity <: MassDensityModel
+Base.@kwdef struct PowerLawCylinderDensity{L,MD} <: MassDensityModel
     "radius of the cylinder"
-    r_c::Float64
+    r_c::L
     "height of the cylinder"
-    h_c::Float64
+    h_c::L
     "scale density of the sphere"
-    ρ₀::Float64
+    ρ₀::MD
     "scale radius of the cylinder"
-    r₀::Float64
+    r₀::L
     "scale height of the cylinder"
-    h₀::Float64
+    h₀::L
     "power by which density changes with respect to radius"
     α::Float64
     "power by which density changes with respect to height"

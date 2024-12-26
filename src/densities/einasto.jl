@@ -13,11 +13,11 @@ _Astronomy and Astrophysics_, vol. 223, no. 1, pp. 89–94,
 See also [the implementation of `mass_density` for this type](@ref
 mass_density(::EinastoDensity, ::Any, ::Any, ::Any)).
 """
-Base.@kwdef struct EinastoDensity <: MassDensityModel
+Base.@kwdef struct EinastoDensity{L,MD} <: MassDensityModel
     "central density"
-    ρ₀::Float64
+    ρ₀::MD
     "harmonic mean radius"
-    a₀::Float64
+    a₀::L
     "structural parameter"
     N::Float64
     "normalizing constant"

@@ -6,11 +6,11 @@
 # Fields
 $(TYPEDFIELDS)
 """
-struct NFWDensity <: MassDensityModel
+struct NFWDensity{L,MD} <: MassDensityModel
     "Scale density"
-    ρ₀::Float64
+    ρ₀::MD
     "Scale radius"
-    r_s::Float64
+    r_s::L
 end
 
 @doc raw"""

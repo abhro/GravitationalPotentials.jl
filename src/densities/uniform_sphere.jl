@@ -10,11 +10,11 @@ $(TYPEDFIELDS)
 
 See also [the implementation of `mass_density` for this type](@ref mass_density(::UniformSphereDensity, ::Any, ::Any, ::Any)).
 """
-Base.@kwdef struct UniformSphereDensity <: MassDensityModel
+Base.@kwdef struct UniformSphereDensity{L,MD} <: MassDensityModel
     "radius of the sphere"
-    rₛ::Float64
+    rₛ::L
     "density of the sphere"
-    ρₛ::Float64
+    ρₛ::MD
 end
 
 @doc raw"""

@@ -10,13 +10,13 @@ $(TYPEDFIELDS)
 
 See also [the implementation of `mass_density` for this type](@ref mass_density(::UniformCylinderDensity, ::Any, ::Any, ::Any)).
 """
-Base.@kwdef struct UniformCylinderDensity <: MassDensityModel
+Base.@kwdef struct UniformCylinderDensity{L,MD} <: MassDensityModel
     "radius of the cylinder"
-    r_c::Float64
+    r_c::L
     "height of the cylinder"
-    h_c::Float64
+    h_c::L
     "density of the cylinder"
-    ρ_c::Float64
+    ρ_c::MD
 end
 
 @doc raw"""

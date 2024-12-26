@@ -14,18 +14,18 @@ $(TYPEDFIELDS)
 
 See also [the implementation of `mass_density` for this type](@ref mass_density(::SpiralGalaxyDensity, ::Any, ::Any, ::Any)).
 """
-Base.@kwdef struct SpiralGalaxyDensity <: MassDensityModel
+Base.@kwdef struct SpiralGalaxyDensity{L,MD} <: MassDensityModel
     "radius of the bulge"
-    r_bulge::Float64
+    r_bulge::L
     "radius of the disk"
-    r_disk::Float64
+    r_disk::L
     "height of the disk"
-    h_disk::Float64
+    h_disk::L
 
     "density of the bulge"
-    ρ_bulge::Float64
+    ρ_bulge::MD
     "density of the disk"
-    ρ_disk::Float64
+    ρ_disk::MD
 end
 
 @doc raw"""

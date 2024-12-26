@@ -10,13 +10,13 @@ $(TYPEDFIELDS)
 
 See also [the implementation of `mass_density` for this type](@ref mass_density(::PowerLawSphereDensity, ::Any, ::Any, ::Any)).
 """
-Base.@kwdef struct PowerLawSphereDensity <: MassDensityModel
+Base.@kwdef struct PowerLawSphereDensity{L,MD} <: MassDensityModel
     "radius of the sphere"
-    rₛ::Float64
+    rₛ::L
     "scale density of the sphere, density changes by `r₀`^`α` at `radius` = `r₀`"
-    ρ₀::Float64
+    ρ₀::MD
     "scale radius of the sphere"
-    r₀::Float64
+    r₀::L
     "power by which density reduces with respect to radius"
     α::Float64
 
