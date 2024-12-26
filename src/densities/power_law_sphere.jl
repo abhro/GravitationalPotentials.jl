@@ -55,3 +55,7 @@ end
 function mass(model::PowerLawSphereDensity)
     return 4π/(α+3) * (model.radius/model.scale_radius)^model.α * model.radius^3
 end
+
+function bounds(model::PowerLawSphereDensity)
+    return [(0, model.r₀), (0, 2π), (-model.r₀, model.r₀)]
+end

@@ -58,3 +58,9 @@ function mass_density(model::SpiralGalaxyDensity, s, φ, z)
 
     return 0.0
 end
+
+function bounds(model::SpiralGalaxyDensity)
+    return [(0, max(model.r_bulge, model.r_disk, model.h_disk)),
+            (0, 2π),
+            (-model.h_disk, model.h_disk)]
+end

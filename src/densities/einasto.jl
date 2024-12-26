@@ -29,7 +29,7 @@ end
 
 Density model
 ```math
-ρ(s, φ, z) = ρ₀ \exp\left[-(a / k a₀)^{1/N}\right]
+ρ(s, φ, z) = ρ₀ \exp\left[-\left(\frac{a}{k a₀}\right)^{1/N}\right]
 ```
 where
 - ``a = \sqrt{s² + z²}``
@@ -41,4 +41,8 @@ where
 function mass_density(model::EinastoDensity, s, φ, z)
     a = hypot(s, z)
     return model.ρ₀ * exp(-(a / (model.k * model.a₀)^(1/model.N)))
+end
+
+function bounds(model::EinastoDensity)
+    return [(0, Inf), (0, 2π), (-Inf, Inf)]
 end

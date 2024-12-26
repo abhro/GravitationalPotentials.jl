@@ -61,3 +61,7 @@ function mass(model::PowerLawCylinderDensity)
            model.h_c^(β+1) / ((β+1) * mode.h₀^β) *
            model.ρ_0
 end
+
+function bounds(model::PowerLawCylinderDensity)
+    return [(0, model.r₀), (0, 2π), (-model.h₀, model.h₀)]
+end
