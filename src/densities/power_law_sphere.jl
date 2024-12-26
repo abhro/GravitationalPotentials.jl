@@ -22,7 +22,7 @@ Base.@kwdef struct PowerLawSphereDensity <: MassDensityModel
 
     function PowerLawSphereDensity(rₛ, ρ₀, r₀, α)
         if iszero(α)
-            throw(DomainError("α cannot be 0. For α = 0 use UniformSphereDensity."))
+            throw(DomainError(α, "α cannot be 0. For α = 0 use UniformSphereDensity."))
         end
         return new(rₛ, ρ₀, r₀, α)
     end
