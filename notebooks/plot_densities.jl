@@ -1,30 +1,29 @@
 ### A Pluto.jl notebook ###
-# v0.19.42
+# v0.20.4
 
 using Markdown
 using InteractiveUtils
 
 # This Pluto notebook uses @bind for interactivity. When running this notebook outside of Pluto, the following 'mock version' of @bind gives bound variables a default value (instead of an error).
 macro bind(def, element)
+    #! format: off
     quote
         local iv = try Base.loaded_modules[Base.PkgId(Base.UUID("6e696c72-6542-2067-7265-42206c756150"), "AbstractPlutoDingetjes")].Bonds.initial_value catch; b -> missing; end
         local el = $(esc(element))
         global $(esc(def)) = Core.applicable(Base.get, el) ? Base.get(el) : iv(el)
         el
     end
+    #! format: on
 end
 
 # ╔═╡ 11757236-0cad-11ef-3235-69829e674f28
-begin
-    import Pkg
-    Pkg.activate(Base.current_project())
-end
+import Pkg; Pkg.activate(Base.current_project())
 
 # ╔═╡ 90748e84-e2c3-43ff-b61b-900f1fed2a4f
 using PlutoUI
 
 # ╔═╡ 0dcb41a1-9cf3-4e4d-81bf-fdc860efa65c
-using PlutoUI: Slider
+using PlutoUI: TableOfContents, Slider, with_terminal
 
 # ╔═╡ 8b711cb6-5a1f-4831-a136-ab6f1b96b1ec
 using CairoMakie
@@ -38,7 +37,7 @@ Use a shared environment for all notebooks demonstrating GravitationalPotentials
 """
 
 # ╔═╡ 301c7650-f3b9-4acf-9674-f4a4aa45e5d9
-PlutoUI.TableOfContents()
+TableOfContents()
 
 # ╔═╡ 59ed98e8-4d5b-490c-b0f6-5dd5ec363886
 function density_heatmap(model, srange, zrange; title="Density heatmap", kwds...)
@@ -102,7 +101,12 @@ Density: $(@bind pls_density NumberField(0:0.1:1000, default=1.9)) $br
 """
 
 # ╔═╡ b033332a-546f-4786-abd5-68300cebc1d8
-pls_model = PowerLawSphereDensity(rₛ=pls_radius, ρ₀=pls_density, r₀=pls_scale_radius, α=pls_alpha)
+pls_model = PowerLawSphereDensity(
+	rₛ = pls_radius,
+	ρ₀ = pls_density,
+	r₀ = pls_scale_radius,
+	α = pls_alpha
+)
 
 # ╔═╡ 7d9ec66e-31ad-4f9f-8d24-a986b88dd8ba
 pls_srange = range(0, 3, length=1000) * pls_radius
@@ -140,7 +144,10 @@ Density: $(@bind cylinder_density NumberField(0:0.1:1000, default=0.5)) $br
 """
 
 # ╔═╡ c6c0f77f-0820-4516-90f1-4c9b6c182dca
-cylinder_model = UniformCylinderDensity(r_c=cylinder_radius, h_c=cylinder_height, ρ_c=cylinder_density)
+cylinder_model = UniformCylinderDensity(
+	r_c = cylinder_radius,
+	h_c = cylinder_height,
+	ρ_c = cylinder_density)
 
 # ╔═╡ c9424081-3542-47d8-a4bc-a2945e264203
 cyl_srange = range(0, 1.5, length=1000) * cylinder_radius
@@ -281,10 +288,10 @@ md"""
 """
 
 # ╔═╡ 41aed17f-4dec-4902-9db3-4c02a9a196c5
-versioninfo |> PlutoUI.with_terminal
+versioninfo |> with_terminal
 
 # ╔═╡ d130ad8f-b41f-4849-b73c-f6d3315f08aa
-Pkg.status |> PlutoUI.with_terminal
+Pkg.status |> with_terminal
 
 # ╔═╡ Cell order:
 # ╟─0bdb3651-c955-4fb1-839f-8590bf2b2641
