@@ -23,11 +23,11 @@ end
 # ╔═╡ 90748e84-e2c3-43ff-b61b-900f1fed2a4f
 using PlutoUI
 
+# ╔═╡ 0dcb41a1-9cf3-4e4d-81bf-fdc860efa65c
+using PlutoUI: Slider
+
 # ╔═╡ 8b711cb6-5a1f-4831-a136-ab6f1b96b1ec
-begin
-    using Plots
-    plotly()
-end
+using CairoMakie
 
 # ╔═╡ 8e402635-93e8-4d67-b173-dc7532d2574c
 using GravitationalPotentials
@@ -39,6 +39,19 @@ Use a shared environment for all notebooks demonstrating GravitationalPotentials
 
 # ╔═╡ 301c7650-f3b9-4acf-9674-f4a4aa45e5d9
 PlutoUI.TableOfContents()
+
+# ╔═╡ 59ed98e8-4d5b-490c-b0f6-5dd5ec363886
+function density_heatmap(model, srange, zrange; title="Density heatmap", kwds...)
+	fig = Figure()
+	ax = Axis(fig[1,1], xlabel="s →", ylabel="z →"; title)
+
+	domain = Iterators.product(srange, 0.0,  zrange)
+	densities = mass_density.(model, domain)
+
+	hm = heatmap!(ax, srange, zrange, densities; kwds...)
+	cbar = Colorbar(fig[1,2], hm)
+	return fig
+end
 
 # ╔═╡ 9f9d2922-8084-4a6c-9487-a10adb86373d
 md"""
@@ -57,26 +70,14 @@ sphere_srange = range(0, 2.4, length=1000) * sphere_radius
 # ╔═╡ 4af0e2fa-a05e-4350-bb86-71e5f8cdd4c7
 sphere_zrange = range(-1.2, 1.2, length=100) * sphere_radius
 
-# ╔═╡ 00f67492-4904-4eac-8680-716636c1256f
-sphere_points = Iterators.product(sphere_srange, 0.0, sphere_zrange) # |> collect
-
 # ╔═╡ 1ceee843-941f-4fd6-af44-24e891635a96
 @bind sphere_density NumberField(0:0.1:1000, default=1.9)
 
 # ╔═╡ bd760423-b837-4e3d-ab29-e0400baba63b
 sphere_model = UniformSphereDensity(rₛ=sphere_radius, ρₛ=sphere_density)
 
-# ╔═╡ 96350e8b-6663-4c11-b21b-299e4e55e796
-sphere_densities = mass_density.(sphere_model, sphere_points)
-
-# ╔═╡ 8f9905a0-1b9d-497b-8392-c82a4698108b
-heatmap(
-    sphere_srange, sphere_zrange,
-    sphere_densities,
-    transpose=true,
-    xlabel="s →", ylabel="z →",
-    title="Uniform density sphere model",
-)
+# ╔═╡ 7f61c30b-145e-462e-ae01-8c05ebc440de
+density_heatmap(sphere_model, sphere_srange, sphere_zrange)
 
 # ╔═╡ 24ddf139-dec8-4c37-b29d-6fcbd6594662
 md"""
@@ -109,26 +110,13 @@ pls_srange = range(0, 3, length=1000) * pls_radius
 # ╔═╡ 6681ae1b-87e7-460b-9476-381345e49148
 pls_zrange = range(-1.5, 1.5, length=100) * pls_radius
 
-# ╔═╡ 821b7083-e67b-40ee-9a35-50968fa9c502
-pls_points = Iterators.product(pls_srange, 0.0, pls_zrange) # |> collect
-
-# ╔═╡ da6acb85-4344-4d4b-8061-0d80bbf11405
-pls_densities = mass_density.(pls_model, pls_points)
-
 # ╔═╡ 33405c03-a162-4eac-9dd0-034628a0cbfe
 md"""
 ## Plot power law sphere density model
 """
 
-# ╔═╡ 8eb8be16-fcfb-4ceb-a698-d4d2a99a65e2
-heatmap(
-    pls_srange, pls_zrange,
-    pls_densities,
-    transpose=true,
-    xlabel="s →", ylabel="z →",
-    title="Power law sphere density model",
-    colormap=:jet,
-)
+# ╔═╡ f1b4cf1a-5c92-4ae5-be96-0a4fd3374823
+density_heatmap(pls_model, pls_srange, pls_zrange, title="Power law sphere density model", colormap=:jet)
 
 # ╔═╡ 197d20f9-ca47-484c-b61b-654b82d25589
 md"""
@@ -160,23 +148,15 @@ cyl_srange = range(0, 1.5, length=1000) * cylinder_radius
 # ╔═╡ 29ad731e-68d7-4615-b329-7f299c637a7f
 cyl_zrange = range(-1.5, 1.5, length=100) * cylinder_height
 
-# ╔═╡ 0f910773-a5c8-44aa-975a-bfa16e7e8b3e
-cylinder_points = Iterators.product(cyl_srange, 0.0, cyl_zrange);
-
-# ╔═╡ 0bd6a691-dc93-49ee-a5b7-ccb7d4073582
-cylinder_densities = mass_density.(cylinder_model, cylinder_points)
-
 # ╔═╡ 9f3375fd-3f5f-470b-962a-4d27db8beb70
 md"""
 ## Plot cylinder density model
 """
 
 # ╔═╡ 6b9f6955-8637-4f9a-9fe5-064e5534dbed
-heatmap(
-    cyl_srange, cyl_zrange,
-    cylinder_densities,
-    transpose=true,
-    xlabel="s →", ylabel="z →",
+density_heatmap(
+    cylinder_model,
+	cyl_srange, cyl_zrange,
     title="Uniform density cylinder model",
 )
 
@@ -218,9 +198,6 @@ sg_srange = range(0, 1.25, length=1000) * max(sg_bulge_radius, sg_disk_radius)
 # ╔═╡ 63529ca5-4630-422a-92d2-60f86a8163ca
 sg_zrange = range(-1.25, 1.25, length=1000) * max(sg_bulge_radius, sg_disk_height)
 
-# ╔═╡ 7c133f1f-31bd-4559-a744-b2d62059969d
-sg_points = Iterators.product(sg_srange, 0.0, sg_zrange) # |> collect
-
 # ╔═╡ 50b1cf85-e197-4e69-b112-f3c88eeb35e9
 md"""
 ## Control galaxy density
@@ -238,21 +215,15 @@ sg_model = SpiralGalaxyDensity(
     ρ_disk=sg_disk_density,
 )
 
-# ╔═╡ 1fb90ff8-3829-4e57-aba1-a2389317c1ab
-sg_densities = mass_density.(sg_model, sg_points)
-
 # ╔═╡ 06cc023c-0b5f-4755-a563-57011f198702
 md"""
 ## Plot galaxy density
 """
 
 # ╔═╡ d2dd3c5e-7feb-4068-857d-1ef31e51515b
-heatmap(
+density_heatmap(
+	sg_model,
     sg_srange, sg_zrange,
-    sg_densities,
-    #zscale=:log10,
-    transpose=true,
-    xlabel="s →", ylabel="z →",
     title="Spiral galaxy simplified density model",
     #colormap=:pastel,
 )
@@ -265,8 +236,44 @@ md"""
 # ╔═╡ 75215ba3-2dd2-478a-9423-c19cbb7d53b9
 @doc mass_density(::EinastoDensity, ::Any, ::Any, ::Any)
 
+# ╔═╡ 0e7487a2-210f-43c3-82a5-53fdb96dc344
+md"""
+Central density (``ρ₀``): $(@bind einasto_ρ₀ NumberField(0:0.1:1000, default=1)) $br
+Harmonic mean radius (``a₀``): $(@bind einasto_a₀ NumberField(0:0.1:1000, default=1)) $br
+Structural parameter (``N``): $(@bind einasto_N NumberField(0:0.1:1000, default=1)) $br
+Normalizing constant (``k``): $(@bind einasto_k NumberField(0:0.1:1000, default=1)) $br
+"""
+
+# ╔═╡ fe2d2ddc-64ff-42fc-9cc9-5da375b63a81
+einasto_srange = range(0, 3.0, length=1000)
+
+# ╔═╡ 6baa582f-0d4e-44e4-8ff7-e795a308276f
+einasto_zrange = range(-3.0, 3.0, length=1000)
+
 # ╔═╡ ac20970f-2543-4cab-933a-ef4420d8e91e
-# TODO
+einasto_model = EinastoDensity(
+    ρ₀=einasto_ρ₀,
+	a₀=einasto_a₀,
+	k=einasto_k,
+	N=einasto_N,
+)
+
+# ╔═╡ 87b69f1b-5e68-45bb-bc6c-0db881fbcea9
+density_heatmap(
+	einasto_model,
+	einasto_srange, einasto_zrange,
+	#xlabel="s →", ylabel="z →",
+	#transpose=true,
+    title="Einasto density model",
+)
+
+# ╔═╡ 3119ef35-d927-4964-a4b7-57e52411bfff
+md"""
+# Navarro–Frenk–White profile
+"""
+
+# ╔═╡ 45836a41-acc6-4be7-98ed-07cce924b0c9
+@doc mass_density(::NFWDensity, ::Any, ::Any, ::Any)
 
 # ╔═╡ 43339592-2d27-4dee-875a-68e0388df9fd
 md"""
@@ -283,38 +290,34 @@ Pkg.status |> PlutoUI.with_terminal
 # ╟─0bdb3651-c955-4fb1-839f-8590bf2b2641
 # ╠═11757236-0cad-11ef-3235-69829e674f28
 # ╠═90748e84-e2c3-43ff-b61b-900f1fed2a4f
+# ╠═0dcb41a1-9cf3-4e4d-81bf-fdc860efa65c
 # ╠═8b711cb6-5a1f-4831-a136-ab6f1b96b1ec
 # ╠═301c7650-f3b9-4acf-9674-f4a4aa45e5d9
 # ╠═8e402635-93e8-4d67-b173-dc7532d2574c
+# ╠═59ed98e8-4d5b-490c-b0f6-5dd5ec363886
 # ╟─9f9d2922-8084-4a6c-9487-a10adb86373d
 # ╠═0780b58b-fa92-4c45-8b86-98c24683ec7b
 # ╠═bd760423-b837-4e3d-ab29-e0400baba63b
 # ╠═7deda84f-1401-48db-980a-8c61e092b2bf
 # ╠═4af0e2fa-a05e-4350-bb86-71e5f8cdd4c7
-# ╠═00f67492-4904-4eac-8680-716636c1256f
-# ╠═96350e8b-6663-4c11-b21b-299e4e55e796
 # ╠═0ceefa8f-e1dd-4b16-a22c-b5ce4e8f3f31
 # ╠═1ceee843-941f-4fd6-af44-24e891635a96
-# ╠═8f9905a0-1b9d-497b-8392-c82a4698108b
+# ╠═7f61c30b-145e-462e-ae01-8c05ebc440de
 # ╟─24ddf139-dec8-4c37-b29d-6fcbd6594662
 # ╠═1043fc7e-20dc-411c-80b8-3cfa909762c1
 # ╟─df25a618-046e-48a1-918e-19d3978ef296
 # ╠═b033332a-546f-4786-abd5-68300cebc1d8
 # ╠═7d9ec66e-31ad-4f9f-8d24-a986b88dd8ba
 # ╠═6681ae1b-87e7-460b-9476-381345e49148
-# ╠═821b7083-e67b-40ee-9a35-50968fa9c502
-# ╠═da6acb85-4344-4d4b-8061-0d80bbf11405
 # ╟─213b4a3d-187e-4023-a4fb-fb0d4886f7f7
 # ╟─33405c03-a162-4eac-9dd0-034628a0cbfe
-# ╠═8eb8be16-fcfb-4ceb-a698-d4d2a99a65e2
+# ╠═f1b4cf1a-5c92-4ae5-be96-0a4fd3374823
 # ╟─197d20f9-ca47-484c-b61b-654b82d25589
 # ╠═cba46d67-b50a-4afb-9b4c-76851501cd63
 # ╟─0e6b434b-a45c-4229-924b-840aa20ef4da
 # ╠═c6c0f77f-0820-4516-90f1-4c9b6c182dca
 # ╠═c9424081-3542-47d8-a4bc-a2945e264203
 # ╠═29ad731e-68d7-4615-b329-7f299c637a7f
-# ╠═0f910773-a5c8-44aa-975a-bfa16e7e8b3e
-# ╠═0bd6a691-dc93-49ee-a5b7-ccb7d4073582
 # ╟─18f75cfc-6266-4fc7-9d67-af20d4ca9ab8
 # ╟─9f3375fd-3f5f-470b-962a-4d27db8beb70
 # ╠═6b9f6955-8637-4f9a-9fe5-064e5534dbed
@@ -327,15 +330,19 @@ Pkg.status |> PlutoUI.with_terminal
 # ╠═ac6bbf27-68fc-49a1-8e91-28cedb283747
 # ╠═eaaec313-f8c8-42fc-90be-682248d5b6b9
 # ╠═63529ca5-4630-422a-92d2-60f86a8163ca
-# ╠═7c133f1f-31bd-4559-a744-b2d62059969d
-# ╠═1fb90ff8-3829-4e57-aba1-a2389317c1ab
 # ╟─c2d4de7f-984f-48f8-ae33-789b185e4421
 # ╟─50b1cf85-e197-4e69-b112-f3c88eeb35e9
 # ╟─06cc023c-0b5f-4755-a563-57011f198702
 # ╠═d2dd3c5e-7feb-4068-857d-1ef31e51515b
 # ╟─344682c5-5240-4e6d-bd66-6bfb6b58195a
 # ╠═75215ba3-2dd2-478a-9423-c19cbb7d53b9
+# ╟─0e7487a2-210f-43c3-82a5-53fdb96dc344
+# ╠═fe2d2ddc-64ff-42fc-9cc9-5da375b63a81
+# ╠═6baa582f-0d4e-44e4-8ff7-e795a308276f
 # ╠═ac20970f-2543-4cab-933a-ef4420d8e91e
+# ╠═87b69f1b-5e68-45bb-bc6c-0db881fbcea9
+# ╟─3119ef35-d927-4964-a4b7-57e52411bfff
+# ╠═45836a41-acc6-4be7-98ed-07cce924b0c9
 # ╟─43339592-2d27-4dee-875a-68e0388df9fd
 # ╠═41aed17f-4dec-4902-9db3-4c02a9a196c5
 # ╠═d130ad8f-b41f-4849-b73c-f6d3315f08aa
