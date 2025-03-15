@@ -3,7 +3,7 @@
 using DocStringExtensions
 
 """
-    MassDensityModel
+    abstract type MassDensityModel
 
 Abstract type for all mass density models. Any subtype of `MassDensityModel`
 should have a corresponding [`mass_density`](@ref) implementation.
