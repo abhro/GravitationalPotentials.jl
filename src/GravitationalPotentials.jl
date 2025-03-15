@@ -15,18 +15,22 @@ export SpiralGalaxyDensity
 export EinastoDensity
 export NFWDensity
 
-"""Cylindrical coordinates bounds `[(s_lo, s_hi), (φ_lo, φ_hi), (z_lo, z_hi)]`"""
-function bounds end
-export bounds
+"""
+    bounds(model)
 
-"""Cylindrical coordinates bounds `([s_lo, φ_lo, z_lo], [s_hi, φ_hi, z_hi])`"""
+Cylindrical coordinates bounds `[(s_lo, s_hi), (φ_lo, φ_hi), (z_lo, z_hi)]`
+"""
+function bounds end
+
+"""
+    bounds_t(model)
+
+Cylindrical coordinates bounds `([s_lo, φ_lo, z_lo], [s_hi, φ_hi, z_hi])`
+"""
 function bounds_t(model::MassDensityModel)
     r_bounds, φ_bounds, z_bounds = bounds(model)
     return ([r_bounds[1], φ_bounds[1], z_bounds[1]], [r_bounds[2], φ_bounds[2], z_bounds[2]])
 end
-export bounds_t
+export bounds, bounds_t, mass, potential
 
-
-export mass
-export potential
 end
