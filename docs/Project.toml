@@ -4,3 +4,6 @@ GravitationalPotentials = "c5ecfa00-e6a4-4f27-837b-868bffbab2ae"
 
 [compat]
 Documenter = "1"
+
+[sources.GravitationalPotentials]
+path = ".."
