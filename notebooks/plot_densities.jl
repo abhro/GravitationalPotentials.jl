@@ -101,7 +101,7 @@ Density: $(@bind pls_density NumberField(0:0.1:1000, default=1.9)) $br
 """
 
 # ╔═╡ b033332a-546f-4786-abd5-68300cebc1d8
-pls_model = PowerLawSphereDensity(
+pls_model = PowerLawSphereDensity{Float64,Float64}(
 	rₛ = pls_radius,
 	ρ₀ = pls_density,
 	r₀ = pls_scale_radius,
