@@ -66,7 +66,7 @@ using Unitful, UnitfulAstro
         model = PowerLawSphereDensity(1u"pc", 1u"g/cm^3", 0.5u"pc", -0.5)
 
         # create model with α = 0
-        @test_throws DimensionError PowerLawSphereDensity(1u"pc", 1u"g/cm^3", 0.5u"pc", 0)
+        @test_throws DomainError PowerLawSphereDensity(1u"pc", 1u"g/cm^3", 0.5u"pc", 0)
 
         # TODO test model with α ∈ (0, 1)
         model = PowerLawSphereDensity(1u"pc", 1u"g/cm^3", 0.5u"pc", 0.5)
