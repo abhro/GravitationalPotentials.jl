@@ -27,6 +27,10 @@ Base.@kwdef struct PowerLawSphereDensity{L,MD} <: MassDensityModel
         return new{L,MD}(rₛ, ρ₀, r₀, α)
     end
 end
+function PowerLawSphereDensity(rₛ, ρ₀, r₀, α) # for handling mismatching types
+    rₛ, r₀ = promote(rₛ, r₀)
+    return PowerLawSphereDensity(rₛ, ρ₀, r₀, α)
+end
 
 @doc raw"""
     mass_density(model::PowerLawSphereDensity, s, φ, z)
