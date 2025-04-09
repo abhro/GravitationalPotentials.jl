@@ -44,17 +44,40 @@ using Unitful, UnitfulAstro
 
     @testset "power law sphere" begin
 
-        # TODO create model with scale radius == sphere radius
-        # TODO create model with scale radius < sphere radius
-        # TODO create model with scale radius > sphere radius
+        # TODO test model with scale radius == sphere radius
+        r = 1u"pc"
+        model = PowerLawSphereDensity(r, 1u"g/cm^3", r, -4)
+
+        # TODO test model with scale radius < sphere radius
+        model = PowerLawSphereDensity(r, 1u"g/cm^3", r/5, -4)
+
+        # TODO test model with scale radius > sphere radius
+        model = PowerLawSphereDensity(r, 1u"g/cm^3", r*5, -4)
 
 
-        # TODO create model with α < -1
-        # TODO create model with α = -1
-        # TODO create model with α ∈ (-1, 0)
-        # TODO create model with α ∈ (0, 1)
-        # TODO create model with α = 1
-        # TODO create model with α > 1
+        # TODO test model with α < -1
+        model = PowerLawSphereDensity(1u"pc", 1u"g/cm^3", 0.5u"pc", -4)
+
+        # TODO test model with α = -1
+        model = PowerLawSphereDensity(1u"pc", 1u"g/cm^3", 0.5u"pc", -1)
+
+        # TODO test model with α ∈ (-1, 0)
+        model = PowerLawSphereDensity(1u"pc", 1u"g/cm^3", 0.5u"pc", -0.8)
+        model = PowerLawSphereDensity(1u"pc", 1u"g/cm^3", 0.5u"pc", -0.5)
+
+        # create model with α = 0
+        @test_throws DimensionError PowerLawSphereDensity(1u"pc", 1u"g/cm^3", 0.5u"pc", 0)
+
+        # TODO test model with α ∈ (0, 1)
+        model = PowerLawSphereDensity(1u"pc", 1u"g/cm^3", 0.5u"pc", 0.5)
+        model = PowerLawSphereDensity(1u"pc", 1u"g/cm^3", 0.5u"pc", 0.8)
+
+        # TODO test model with α = 1
+        model = PowerLawSphereDensity(1u"pc", 1u"g/cm^3", 0.5u"pc", 1)
+
+        # TODO test model with α > 1
+        model = PowerLawSphereDensity(1u"pc", 1u"g/cm^3", 0.5u"pc", 1.2)
+        model = PowerLawSphereDensity(1u"pc", 1u"g/cm^3", 0.5u"pc", 4)
     end
 
     @testset "spiral galaxy" begin
