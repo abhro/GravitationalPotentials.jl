@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 
 """
-    UniformCylinderDensity <: MassDensityModel
+$(TYPEDEF)
 
 Model for a uniform density cylinder centered at the origin.
 

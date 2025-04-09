@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 
 """
-    UniformSphereDensity <: MassDensityModel
+$(TYPEDEF)
 
 Model for a uniform density sphere centered at the origin.
 

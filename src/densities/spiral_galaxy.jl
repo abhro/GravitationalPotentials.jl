@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 
 """
-    SpiralGalaxyDensity <: MassDensityModel
+$(TYPEDEF)
 
 Model for a spiral galaxy that has both a disk and a central bulge,
 with the bulge density dominating in the overlap.

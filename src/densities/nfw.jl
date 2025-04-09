@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 
 """
-    NFWDensity <: MassDensityModel
+$(TYPEDEF)
 
 # Fields
 $(TYPEDFIELDS)

@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 
 """
-    PowerLawSphereDensity <: MassDensityModel
+$(TYPEDEF)
 
 Model for a sphere with a power law density centered at the origin.
 

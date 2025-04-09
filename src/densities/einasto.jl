@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 
 """
-    EinastoDensity <: MassDensityModel
+$(TYPEDEF)
 
 # Fields
 $(TYPEDFIELDS)

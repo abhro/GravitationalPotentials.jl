@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 
 """
-    PowerLawCylinderDensity <: MassDensityModel
+$(TYPEDEF)
 
 Model for a cylinder with a power law density centered at the origin.
 
