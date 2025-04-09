@@ -2,6 +2,7 @@
 
 using GravitationalPotentials
 using Test
+using Unitful, UnitfulAstro
 
 @testset "density models" begin
 
