@@ -6,7 +6,7 @@
 # Fields
 $(TYPEDFIELDS)
 """
-struct NFWDensity{L,MD} <: MassDensityModel
+Base.@kwdef struct NFWDensity{L,MD} <: MassDensityModel
     "Scale density"
     ρ₀::MD
     "Scale radius"
