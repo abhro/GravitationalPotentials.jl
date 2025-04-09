@@ -9,7 +9,7 @@ positive(x::Real) = x ≤ 0 && throw(DomainError(x, "Value must be > 0"))
 struct Polar{T<:Real,A<:Real}
     s::T
     φ::A
-    function Polar{T,A}(s::T, φ::A) where {T<:Real,A<:Real}
+    function Polar(s::T, φ::A) where {T<:Real,A<:Real}
         nonnegative(s)
         return new{T,A}(s, mod2pi(φ))
     end
@@ -18,7 +18,7 @@ struct Cylindrical{T<:Real,A<:Real}
     s::T
     φ::A # azimuthal angle
     z::T
-    function Cylindrical{T,A}(s::T, φ::A, z::T) where {T<:Real,A<:Real}
+    function Cylindrical(s::T, φ::A, z::T) where {T<:Real,A<:Real}
         nonnegative(s)
         return new{T,A}(s, mod2pi(φ), z)
     end
@@ -27,7 +27,7 @@ struct Spherical{T<:Real,A<:Real}
     r::T
     θ::A # polar angle
     φ::A # azimuthal angle
-    function Cylindrical{T,A}(r::T, θ::A, φ::T) where {T<:Real,A<:Real}
+    function Cylindrical(r::T, θ::A, φ::T) where {T<:Real,A<:Real}
         nonnegative(r)
         return new{T,A}(r, mod2pi(θ), mod2pi(φ))
     end
