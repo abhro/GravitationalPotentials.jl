@@ -64,4 +64,7 @@ using Unitful, UnitfulAstro
     @testset "Einasto galaxy" begin
 
     end
+
+    @testset "NFW" begin
+    end
 end
