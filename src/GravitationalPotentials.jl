@@ -2,6 +2,8 @@
 
 module GravitationalPotentials
 
+using Coordinates
+
 include("densities.jl")
 include("potentials.jl")
 

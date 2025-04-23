@@ -4,6 +4,7 @@ authors = ["Abhro R. and contributors"]
 version = "0.0.0-DEV"
 
 [deps]
+Coordinates = "e9ef043c-5f73-4baa-bfac-7a9763f7755c"
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
 Integrals = "de52edbc-65ea-441a-8357-d3a637375a31"
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
@@ -13,3 +14,6 @@ DocStringExtensions = "0.9"
 Integrals = "3, 4"
 LinearAlgebra = "1.6"
 julia = "1.6"
+
+[sources]
+Coordinates = {url = "https://github.com/abhro/Coordinates.jl"}
