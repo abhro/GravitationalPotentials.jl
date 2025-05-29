@@ -62,6 +62,6 @@ function mass(model::PowerLawCylinderDensity)
            model.ρ_0
 end
 
-function bounds(model::PowerLawCylinderDensity)
-    return [(0, model.r₀), (0, 2π), (-model.h₀, model.h₀)]
+function Extents.extent(model::PowerLawCylinderDensity)
+    return Extents.Extent(s = (0, model.r₀), φ = (0, 2π), z = (-model.h₀, model.h₀))
 end

@@ -42,3 +42,6 @@ function mass_density(model::UniformCylinderDensity, s, φ, z)
 end
 
 mass(model::UniformCylinderDensity) = 2π*model.r_c^2 * model.h_c * model.ρ_c
+
+Extents.extent(model::UniformCylinderDensity) = Extents.Extent(
+    s = (0, model.r_c), φ = (0, 2π), z = (-model.h_c, model.h_c))

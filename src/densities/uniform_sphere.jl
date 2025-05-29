@@ -41,6 +41,6 @@ end
 
 mass(model::UniformSphereDensity) = 4π/3 * model.ρₛ * model.rₛ^3
 
-function bounds(model::UniformSphereDensity)
-    return [(0, model.rₛ), (0, 2π), (-model.rₛ, model.rₛ)]
+function Extents.extent(model::UniformSphereDensity)
+    return Extents.Extent(s = (0, model.rₛ), φ = (0, 2π), z = (-model.rₛ, model.rₛ))
 end
