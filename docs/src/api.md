@@ -1,12 +1,6 @@
-
 # API reference
 
 Documentation for [GravitationalPotentials](https://github.com/abhro/GravitationalPotentials.jl).
-
-```@docs
-bounds
-bounds_t
-```
 
 ## Density models
 
