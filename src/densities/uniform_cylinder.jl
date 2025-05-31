@@ -42,3 +42,24 @@ mass(model::UniformCylinderDensity) = 2π*model.r_c^2 * model.h_c * model.ρ_c
 
 Extents.extent(model::UniformCylinderDensity) = Extents.Extent(
     s = (0, model.r_c), φ = (0, 2π), z = (-model.h_c, model.h_c))
+
+"""
+    onaxispotential(model::UniformCylinderDensity, z)
+
+Potential for test point at (0, φ, z).
+Technically φ is not well-defined for s=0, but it's irrelevant here.
+"""
+function onaxispotential(model::UniformCylinderDensity, z)
+    R = model.r_c
+    H = model.h_c
+
+    # auxiliary quantities, no idea what to call them
+    A = hypot(R, z+H)
+    B = hypot(R, z-H)
+
+    term1 = 2R * log((A + z+H) / (B + z-H))
+    term2 = (z+H) * log(1 + 2R * (A + R) / (z+H)^2)
+    term3 = (z-H) * log(1 + 2R * (B + R) / (z-H)^2)
+
+    return -G * π * model.ρ_c * (term1 + term2 - term3)
+end
