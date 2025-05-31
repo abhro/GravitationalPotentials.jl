@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: GravitationalPotentials
+message: >-
+  If you use this software, please cite it using the metadata from this file.
+type: software
+authors:
+  - given-names: Abhro
+    family-names: R.
+repository-code: 'https://github.com/abhro/GravitationalPotentials.jl'
+url: 'https://abhro.github.io/GravitationalPotentials.jl'
+abstract: ' Gravitational potential field calculations for (galactic) density models.'
+license: MIT
