@@ -22,9 +22,10 @@ Density model
 ```
 where ``r = \sqrt{s^2 + z^2}``
 """
-function mass_density(model::NFWDensity, s, φ, z)
+function mass_density(model::NFWDensity{L}, s::L, φ, z::L) where {L}
     r = hypot(s, z)
     return model.ρ₀ / ((r/model.r_s) * (1 + r/model.r_s)^2)
 end
 
-Extents.extent(model::NFWDensity) = Extents.Extent((0, Inf), (0, 2π), (-Inf, Inf))
+Extents.extent(model::NFWDensity{L}) where {L} =
+    Extents.Extent((zero(L), L(Inf)), (0, 2π), (L(-Inf), L(Inf)))

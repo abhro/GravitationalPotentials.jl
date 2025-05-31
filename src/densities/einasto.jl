@@ -38,9 +38,10 @@ where
 - ``k`` = `model.k`
 - ``N`` = `model.N`
 """
-function mass_density(model::EinastoDensity, s, φ, z)
+function mass_density(model::EinastoDensity{L}, s::L, φ, z::L) where {L}
     a = hypot(s, z)
     return model.ρ₀ * exp(-(a / (model.k * model.a₀)^(1/model.N)))
 end
 
-Extents.extent(model::EinastoDensity) = Extents.Extent(s = (0, Inf), φ = (0, 2π), z = (-Inf, Inf))
+Extents.extent(model::EinastoDensity{L}) where {L} =
+    Extents.Extent(s = (zero(L), L(Inf)), φ = (0, 2π), z = (L(-Inf), L(Inf)))

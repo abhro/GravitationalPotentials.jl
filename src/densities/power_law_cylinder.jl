@@ -46,22 +46,20 @@ where
 - ``R_c`` = `model.r_c`
 - ``H_c`` = `model.h_c`
 """
-function mass_density(model::PowerLawCylinderDensity, s, φ, z)
+function mass_density(model::PowerLawCylinderDensity{L,MD}, s::L, φ, z::L) where {L,MD}
     if s ≤ model.r_c && z ≤ model.h_c
         return model.ρ₀ * (s / model.r₀) ^ model.α * (z / model.h₀)^model.β
     end
-    return 0.0
+    return zero(MD)
 end
 
 function mass(model::PowerLawCylinderDensity)
     α = model.α
     β = model.β
-    return π *
-           model.r_c^(α+2) / ((α + 2) * model.r₀^α) *
-           model.h_c^(β+1) / ((β+1) * mode.h₀^β) *
-           model.ρ_0
+    return π * model.ρ₀ *
+           model.r_c^(α+2) / ((α+2) * model.r₀^α) *
+           model.h_c^(β+1) / ((β+1) * model.h₀^β)
 end
 
-function Extents.extent(model::PowerLawCylinderDensity)
-    return Extents.Extent(s = (0, model.r₀), φ = (0, 2π), z = (-model.h₀, model.h₀))
-end
+Extents.extent(model::PowerLawCylinderDensity{L}) where {L} =
+    Extents.Extent(s = (zero(L), model.r₀), φ = (0, 2π), z = (-model.h₀, model.h₀))

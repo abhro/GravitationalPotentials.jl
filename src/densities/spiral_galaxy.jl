@@ -46,22 +46,21 @@ where
 - ``R_d`` = `model.r_disk`
 - ``H_d`` = `model.h_disk`
 """
-function mass_density(model::SpiralGalaxyDensity, s, φ, z)
+function mass_density(model::SpiralGalaxyDensity{L,MD}, s::L, φ, z::L) where {L,MD}
     rad = hypot(s, z)
 
-    if rad ≤ model.r_bulge
+    if rad ≤ model.r_bulge # within the bulge
         return model.ρ_bulge
     end
-    if s ≤ model.r_disk && abs(z) ≤ model.h_disk
+    if s ≤ model.r_disk && abs(z) ≤ model.h_disk # within the disk
         return model.ρ_disk
     end
 
-    return 0.0
+    return zero(MD) # outside the galaxy
 end
 
-function Extents.extent(model::SpiralGalaxyDensity)
-    return Extents.Extent(
-            s = (0, max(model.r_bulge, model.r_disk, model.h_disk)),
-            φ = (0, 2π),
-            z = (-model.h_disk, model.h_disk))
-end
+Extents.extent(model::SpiralGalaxyDensity{L}) where {L} =
+    Extents.Extent(
+        s = (zero(L), max(model.r_bulge, model.r_disk, model.h_disk)),
+        φ = (0, 2π),
+        z = (-model.h_disk, model.h_disk))

@@ -34,14 +34,14 @@ where
 - ``R_c`` = `model.r_c`
 - ``H_c`` = `model.h_c`
 """
-function mass_density(model::UniformCylinderDensity, s, φ, z)
-    return s ≤ model.r_c && abs(z) ≤ model.h_c ? model.ρ_c : 0.0
+function mass_density(model::UniformCylinderDensity{L,MD}, s::L, φ, z::L) where {L,MD}
+    return s ≤ model.r_c && abs(z) ≤ model.h_c ? model.ρ_c : zero(MD)
 end
 
 mass(model::UniformCylinderDensity) = 2π*model.r_c^2 * model.h_c * model.ρ_c
 
-Extents.extent(model::UniformCylinderDensity) = Extents.Extent(
-    s = (0, model.r_c), φ = (0, 2π), z = (-model.h_c, model.h_c))
+Extents.extent(model::UniformCylinderDensity{L}) where {L} =
+    Extents.Extent(s = (zero(L), model.r_c), φ = (0, 2π), z = (-model.h_c, model.h_c))
 
 """
     onaxispotential(model::UniformCylinderDensity, z)
@@ -49,7 +49,7 @@ Extents.extent(model::UniformCylinderDensity) = Extents.Extent(
 Potential for test point at (0, φ, z).
 Technically φ is not well-defined for s=0, but it's irrelevant here.
 """
-function onaxispotential(model::UniformCylinderDensity, z)
+function onaxispotential(model::UniformCylinderDensity{L}, z::L) where {L}
     R = model.r_c
     H = model.h_c
 

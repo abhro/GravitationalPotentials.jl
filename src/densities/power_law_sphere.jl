@@ -48,7 +48,7 @@ where
 - ``α`` = `model.α`
 - ``R_s`` = `model.rₛ`
 """
-function mass_density(model::PowerLawSphereDensity{L,MD}, s, φ, z) where {L,MD}
+function mass_density(model::PowerLawSphereDensity{L,MD}, s::L, φ, z::L) where {L,MD}
     rad = hypot(s, z)
     return rad ≤ model.rₛ ? model.ρ₀ * (rad/model.r₀)^model.α : zero(MD)
 end
@@ -57,6 +57,5 @@ function mass(model::PowerLawSphereDensity)
     return 4π/(α+3) * (model.radius/model.scale_radius)^model.α * model.radius^3
 end
 
-function Extents.extent(model::PowerLawSphereDensity)
-    return Extents.Extent(s = (0, model.r₀), φ = (0, 2π), z = (-model.r₀, model.r₀))
-end
+Extents.extent(model::PowerLawSphereDensity{L,MD}) where {L,MD} =
+    Extents.Extent(s = (zero(L), model.r₀), φ = (0, 2π), z = (-model.r₀, model.r₀))

@@ -31,7 +31,7 @@ where
 - ``ρ_s`` = `model.ρₛ`
 - ``R_s`` = `model.rₛ`
 """
-function mass_density(model::UniformSphereDensity{L,MD}, s, φ, z) where {L,MD}
+function mass_density(model::UniformSphereDensity{L,MD}, s::L, φ, z::L) where {L,MD}
     rad = hypot(s, z)
     return rad ≤ model.rₛ ? model.ρₛ : zero(MD)
 end
@@ -42,7 +42,7 @@ function Extents.extent(model::UniformSphereDensity{L,MD}) where {L,MD}
     return Extents.Extent(s = (zero(L), model.rₛ), φ = (0, 2π), z = (-model.rₛ, model.rₛ))
 end
 
-function potential(model::UniformSphereDensity, s, φ, z)
+function potential(model::UniformSphereDensity{L}, s::L, φ, z::L) where {L}
     r = hypot(s, z)
     M = mass(model)
     R = model.rₛ
