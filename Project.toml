@@ -14,6 +14,7 @@ LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 Coordinates = {url = "https://github.com/abhro/Coordinates.jl"}
 
 [compat]
+Coordinates = "0"
 DocStringExtensions = "0.9"
 Extents = "0.1"
 Integrals = "3, 4"
