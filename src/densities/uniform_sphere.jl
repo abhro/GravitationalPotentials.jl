@@ -43,4 +43,13 @@ mass(model::UniformSphereDensity) = 4π/3 * model.ρₛ * model.rₛ^3
 
 function Extents.extent(model::UniformSphereDensity)
     return Extents.Extent(s = (0, model.rₛ), φ = (0, 2π), z = (-model.rₛ, model.rₛ))
+
+function potential(model::UniformSphereDensity, s, φ, z)
+    r = hypot(s, z)
+    M = mass(model)
+    R = model.rₛ
+
+    # outside the sphere, treat it as a point mass
+    radial_scale = r ≥ R ? 1/r : (3/2R - r^2/(2R^3))
+    return -G * M * radial_scale
 end
