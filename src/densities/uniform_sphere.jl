@@ -38,9 +38,8 @@ end
 
 mass(model::UniformSphereDensity) = 4π/3 * model.ρₛ * model.rₛ^3
 
-function Extents.extent(model::UniformSphereDensity{L,MD}) where {L,MD}
-    return Extents.Extent(s = (zero(L), model.rₛ), φ = (0, 2π), z = (-model.rₛ, model.rₛ))
-end
+Extents.extent(model::UniformSphereDensity{L,MD}) where {L,MD} =
+    Extents.Extent(s = (zero(L), model.rₛ), φ = (0, 2π), z = (-model.rₛ, model.rₛ))
 
 function potential(model::UniformSphereDensity{L}, s::L, φ, z::L) where {L}
     r = hypot(s, z)
