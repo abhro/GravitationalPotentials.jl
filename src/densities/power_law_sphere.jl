@@ -54,7 +54,16 @@ function mass_density(model::PowerLawSphereDensity{L,MD}, s::L, φ, z::L) where 
 end
 
 mass(model::PowerLawSphereDensity) =
-    4π/(α+3) * (model.rₛ/model.r₀)^model.α * model.rₛ^3
+    4π/(α+3) * model.rₛ^3 * (model.rₛ/model.r₀)^model.α
 
 Extents.extent(model::PowerLawSphereDensity{L,MD}) where {L,MD} =
     Extents.Extent(s = (zero(L), model.r₀), φ = (0, 2π), z = (-model.r₀, model.r₀))
+
+function potential(model::PowerLawSphereDensity{L}, s::L, φ, z::L) where {L}
+    r = hypot(s, z)
+    if r ≤ model.rₛ
+        error("Not yet implemented")
+    end
+    M = mass(model)
+    return - G * M / r
+end
