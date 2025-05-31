@@ -8,7 +8,11 @@ using Unitful, UnitfulAstro
 
     @testset "uniform sphere" begin
 
-        # TODO create model
+        # create model
+        model = UniformSphereDensity(1u"pc", 1u"g/cm^3")
+
+        # test outside sphere
+        @test mass_density(model, 1u"pc", 0, 2u"pc") |> iszero
 
         # TODO test at origin
 
@@ -30,7 +34,11 @@ using Unitful, UnitfulAstro
 
     @testset "uniform cylinder" begin
 
-        # TODO create model
+        # create model
+        model = UniformCylinderDensity(1u"pc", 2u"ly", 3.3u"kg/m^3")
+
+        # test outside cylinder
+        @test mass_density(model, 2u"pc", 0.5, 8u"km") |> iszero
 
         # TODO test at roof
 

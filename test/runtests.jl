@@ -6,6 +6,7 @@ using Aqua
 
 @testset "GravitationalPotentials.jl" begin
     include("density_tests.jl")
+    include("potential_tests.jl")
 
     @testset "Code quality (Aqua)" begin
         Aqua.test_all(GravitationalPotentials)
