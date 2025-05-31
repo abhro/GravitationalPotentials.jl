@@ -43,6 +43,4 @@ function mass_density(model::EinastoDensity, s, φ, z)
     return model.ρ₀ * exp(-(a / (model.k * model.a₀)^(1/model.N)))
 end
 
-function Extents.extent(model::EinastoDensity)
-    return Extents.Extent(s = (0, Inf), φ = (0, 2π), z = (-Inf, Inf))
-end
+Extents.extent(model::EinastoDensity) = Extents.Extent(s = (0, Inf), φ = (0, 2π), z = (-Inf, Inf))

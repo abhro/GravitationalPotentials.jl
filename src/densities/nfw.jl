@@ -27,6 +27,4 @@ function mass_density(model::NFWDensity, s, φ, z)
     return model.ρ₀ / ((r/model.r_s) * (1 + r/model.r_s)^2)
 end
 
-function Extents.extent(model::NFWDensity)
-    return Extents.Extent((0, Inf), (0, 2π), (-Inf, Inf))
-end
+Extents.extent(model::NFWDensity) = Extents.Extent((0, Inf), (0, 2π), (-Inf, Inf))

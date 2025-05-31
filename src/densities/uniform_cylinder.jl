@@ -35,10 +35,7 @@ where
 - ``H_c`` = `model.h_c`
 """
 function mass_density(model::UniformCylinderDensity, s, φ, z)
-    if s ≤ model.r_c && abs(z) ≤ model.h_c
-        return model.ρ_c
-    end
-    return 0.0
+    return s ≤ model.r_c && abs(z) ≤ model.h_c ? model.ρ_c : 0.0
 end
 
 mass(model::UniformCylinderDensity) = 2π*model.r_c^2 * model.h_c * model.ρ_c

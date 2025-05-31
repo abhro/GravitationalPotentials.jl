@@ -48,12 +48,9 @@ where
 - ``α`` = `model.α`
 - ``R_s`` = `model.rₛ`
 """
-function mass_density(model::PowerLawSphereDensity, s, φ, z)
+function mass_density(model::PowerLawSphereDensity{L,MD}, s, φ, z) where {L,MD}
     rad = hypot(s, z)
-    if rad ≤ model.rₛ
-        return model.ρ₀ * (rad / model.r₀) ^ model.α
-    end
-    return 0.0
+    return rad ≤ model.rₛ ? model.ρ₀ * (rad/model.r₀)^model.α : zero(MD)
 end
 
 function mass(model::PowerLawSphereDensity)
