@@ -60,9 +60,13 @@ function onaxispotential(model::UniformCylinderDensity{L}, z::L) where {L}
     A = hypot(R, z+H)
     B = hypot(R, z-H)
 
-    term1 = 2R * log((A + z+H) / (B + z-H))
-    term2 = (z+H) * log(1 + 2R * (A + R) / (z+H)^2)
-    term3 = (z-H) * log(1 + 2R * (B + R) / (z-H)^2)
+    s1 = sign(z+H)
+    s2 = sign(z-H)
 
-    return -G * π * model.ρ_c * (term1 + term2 - term3)
+    term1 = (z+H) * A
+    term2 = (z-H) * B
+    term3 = R^2 * (atanh((z+H)/A) - atanh((z-H)/B))
+    term4 = H * ((2z+H) * s1 + (2z-H) * s2)
+
+    return -G * π * model.ρ_c * (term1 - term2 + term3 - term4)
 end
