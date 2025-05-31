@@ -18,6 +18,9 @@ Base.@kwdef struct UniformCylinderDensity{L,MD} <: MassDensityModel
     "density of the cylinder"
     ρ_c::MD
 end
+UniformCylinderDensity(r_c, h_c, ρ_c) = # for handling mismatching types
+    UniformCylinderDensity(promote(r_c, h_c)..., ρ_c)
+
 
 @doc raw"""
     mass_density(model::UniformCylinderDensity, s, φ, z)
