@@ -11,19 +11,20 @@ DocMeta.setdocmeta!(
 )
 
 makedocs(;
-    modules=[GravitationalPotentials],
-    authors="Abhro R. and contributors",
-    sitename="GravitationalPotentials.jl",
-    format=Documenter.HTML(;
-        edit_link="main",
-        assets=String[],
+    modules = [GravitationalPotentials],
+    authors = "Abhro R. and contributors",
+    sitename = "GravitationalPotentials.jl",
+    format = Documenter.HTML(;
+        edit_link = "main",
+        assets = String[],
     ),
-    pages=[
+    pages = [
         "Home" => "index.md",
         "API reference" => "api.md",
     ],
 )
 
 deploydocs(;
-    repo="github.com/abhro/GravitationalPotentials.jl.git",
+    repo = "github.com/abhro/GravitationalPotentials.jl.git",
+    push_preview = true,
 )
