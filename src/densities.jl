@@ -20,7 +20,10 @@ Base.broadcastable(m::MassDensityModel) = Ref(m)
 Given a mass density profile/model, return the corresponding mass density at
 cylindrical coordinates ``(s, φ, z)``.
 """
-function mass_density end
+function mass_density(model::MassDensityModel, s, φ, z)
+    s, z = promote(s, z)
+    return mass_density(model, s, φ, z)
+end
 
 mass_density(model::MassDensityModel, rvec::NTuple{3,<:Real}) =
     mass_density(model, rvec[1], rvec[2], rvec[3])
