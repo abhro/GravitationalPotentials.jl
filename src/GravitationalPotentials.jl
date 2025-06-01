@@ -4,6 +4,7 @@ module GravitationalPotentials
 
 using Coordinates
 import Extents
+using PhysicalConstants.CODATA2022: G
 
 include("densities.jl")
 include("potentials.jl")
