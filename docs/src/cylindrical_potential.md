@@ -11,7 +11,15 @@ In general, we can get the gravitational potential as
 ```math
 \Phi(\mathbf{r}) = -G \int_\text{cylinder} \frac{ρ(\mathbf{r}')}{\left|\mathbf{r} - \mathbf{r}'\right|} \, d^3 \mathbf{r}'
 ```
-where each ``\mathbf{r}' = (s', φ', z')`` is a source point inside the cylinder. Also note, in the cylindrical
+where each ``\mathbf{r}' = (s', φ', z')`` is a source point inside the cylinder, and the density function is
+```math
+ρ(\mathbf{r}) = \begin{cases}
+ρ_0, & \text{if } \mathbf{r} \in \text{cylinder} \\
+0, & \text{if } \mathbf{r} \notin \text{cylinder}
+\end{cases}
+```
+
+Also note, in the cylindrical
 coordinate system, we have the two relations:
 ```math
 \begin{align*}
@@ -79,6 +87,6 @@ and we get
 \end{align*}
 ```
 
-## Case two: test-point on the xy-plane
+## Case 2: test-point on the xy-plane
 
 TODO
