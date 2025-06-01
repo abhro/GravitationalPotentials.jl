@@ -54,7 +54,7 @@ Technically φ is not well-defined for s=0, but it's irrelevant here.
 """
 function onaxispotential(model::UniformCylinderDensity{L}, z::L) where {L}
     R = model.r_c
-    H = model.h_c
+    H = model.h_c/2
 
     # auxiliary quantities, no idea what to call them
     A = hypot(R, z+H)
