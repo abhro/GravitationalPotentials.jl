@@ -12,14 +12,14 @@ See also [the implementation of `mass_density` for this type](@ref mass_density(
 """
 Base.@kwdef struct UniformCylinderDensity{L,MD} <: MassDensityModel
     "radius of the cylinder"
-    r_c::L
+    R::L
     "height of the cylinder"
-    h_c::L
+    H::L
     "density of the cylinder"
-    ρ_c::MD
+    ρ₀::MD
 end
-UniformCylinderDensity(r_c, h_c, ρ_c) = # for handling mismatching types
-    UniformCylinderDensity(promote(r_c, h_c)..., ρ_c)
+UniformCylinderDensity(R, H, ρ₀) = # for handling mismatching types
+    UniformCylinderDensity(promote(R, H)..., ρ₀)
 
 
 @doc raw"""
@@ -28,23 +28,23 @@ UniformCylinderDensity(r_c, h_c, ρ_c) = # for handling mismatching types
 Density model
 ```math
 ρ(s, φ, z) = \begin{cases}
-    ρ_0 & \text{if } s ≤ R_c, |z| ≤ H_c \\
+    ρ_0 & \text{if } s ≤ R, |z| ≤ H \\
     0 & \text{otherwise}
 \end{cases}
 ```
 where
-- ``ρ_0`` = `model.ρ_c`
-- ``R_c`` = `model.r_c`
-- ``H_c`` = `model.h_c`
+- ``ρ_0`` = `model.ρ₀`
+- ``R`` = `model.R`
+- ``H`` = `model.H`
 """
 function mass_density(model::UniformCylinderDensity{L,MD}, s::L, φ, z::L) where {L,MD}
-    return s ≤ model.r_c && abs(z) ≤ model.h_c ? model.ρ_c : zero(MD)
+    return s ≤ model.R && abs(z) ≤ model.H ? model.ρ₀ : zero(MD)
 end
 
-mass(model::UniformCylinderDensity) = 2π*model.r_c^2 * model.h_c * model.ρ_c
+mass(model::UniformCylinderDensity) = 2π*model.R^2 * model.H * model.ρ₀
 
 Extents.extent(model::UniformCylinderDensity{L}) where {L} =
-    Extents.Extent(s = (zero(L), model.r_c), φ = (0, 2π), z = (-model.h_c, model.h_c))
+    Extents.Extent(s = (zero(L), model.R), φ = (0, 2π), z = (-model.H, model.H))
 
 """
     onaxispotential(model::UniformCylinderDensity, z)
@@ -53,8 +53,8 @@ Potential for test point at ``(0, φ, z)``.
 Technically ``φ`` is not well-defined for ``s=0``, but it's irrelevant here.
 """
 function onaxispotential(model::UniformCylinderDensity{L}, z::L) where {L}
-    R = model.r_c
-    H = model.h_c/2
+    R = model.R
+    H = model.H/2
 
     # auxiliary quantities, no idea what to call them
     A = hypot(R, z+H)
