@@ -51,22 +51,34 @@ Extents.extent(model::UniformCylinderDensity{L}) where {L} =
 
 Potential for test point at ``(0, φ, z)``.
 Technically ``φ`` is not well-defined for ``s=0``, but it's irrelevant here.
+
+Mathematical definition
+```math
+\\Phi(z) = - Gπ ρ_0 \\left[
+    (z+h)A - (z-h)B
+    + R^2 \\left(
+        \\operatorname{artanh}\\left(\\frac{z+h}{A}\\right)
+        - \\operatorname{artanh}\\left(\\frac{z-h}{B}\\right)
+    \\right)
+    - h \\left((2z+h) \\operatorname{sgn}(z+h) + (2z-h) \\operatorname{sgn}(z-h)\\right)
+\\right]
+```
+where ``A = \\sqrt{R^2 + (z+h)^2}``, ``B = \\sqrt{R^2 + (z-h)^2}``, and ``h = H/2``.
 """
 function onaxispotential(model::UniformCylinderDensity{L}, z::L) where {L}
-    R = model.R
-    H = model.H/2
+    (; R, H) = model
+    h = H/2
 
     # auxiliary quantities, no idea what to call them
-    A = hypot(R, z+H)
-    B = hypot(R, z-H)
+    A = hypot(R, z+h)
+    B = hypot(R, z-h)
 
-    s1 = sign(z+H)
-    s2 = sign(z-H)
+    s1 = sign(z+h)
+    s2 = sign(z-h)
 
-    term1 = (z+H) * A
-    term2 = (z-H) * B
-    term3 = R^2 * (atanh((z+H)/A) - atanh((z-H)/B))
-    term4 = H * ((2z+H) * s1 + (2z-H) * s2)
+    term1 = (z+h) * A - (z-h) * B
+    term2 = R^2 * (atanh((z+h)/A) - atanh((z-h)/B))
+    term3 = h * ((2z+h) * s1 + (2z-h) * s2)
 
-    return -G * π * model.ρ_c * (term1 - term2 + term3 - term4)
+    return -G * π * model.ρ₀ * (term1 + term2 - term3)
 end
