@@ -59,8 +59,10 @@ function mass_density(model::SpiralGalaxyDensity{L,MD}, s::L, φ, z::L) where {L
     return zero(MD) # outside the galaxy
 end
 
-Extents.extent(model::SpiralGalaxyDensity{L}) where {L} =
-    Extents.Extent(
-        s = (zero(L), max(model.r_bulge, model.r_disk, model.h_disk)),
+function Extents.extent(model::SpiralGalaxyDensity{L}) where {L}
+    (; r_bulge, r_disk, h_disk) = model
+    return Extents.Extent(
+        s = (zero(L), max(r_bulge, r_disk, h_disk)),
         φ = (0, 2π),
-        z = (-model.h_disk, model.h_disk))
+        z = (-h_disk, h_disk))
+end

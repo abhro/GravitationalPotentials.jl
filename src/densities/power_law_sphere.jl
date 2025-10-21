@@ -56,8 +56,10 @@ end
 mass(model::PowerLawSphereDensity) =
     4π/(α+3) * model.rₛ^3 * (model.rₛ/model.r₀)^model.α
 
-Extents.extent(model::PowerLawSphereDensity{L,MD}) where {L,MD} =
-    Extents.Extent(s = (zero(L), model.r₀), φ = (0, 2π), z = (-model.r₀, model.r₀))
+function Extents.extent(model::PowerLawSphereDensity{L,MD}) where {L,MD}
+    rₛ = model.rₛ
+    return Extents.Extent(s = (zero(L), rₛ), φ = (0, 2π), z = (-rₛ, rₛ))
+end
 
 function potential(model::PowerLawSphereDensity{L}, s::L, φ, z::L) where {L}
     r = hypot(s, z)

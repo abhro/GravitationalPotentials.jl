@@ -54,11 +54,10 @@ function mass_density(model::PowerLawCylinderDensity{L,MD}, s::L, φ, z::L) wher
 end
 
 function mass(model::PowerLawCylinderDensity)
-    α = model.α
-    β = model.β
-    return π * model.ρ₀ *
-           model.r_c^(α+2) / ((α+2) * model.r₀^α) *
-           model.h_c^(β+1) / ((β+1) * model.h₀^β)
+    (; r_c, h_c, ρ₀, r₀, h₉, α, β) = model
+    return π * ρ₀ *
+           r_c^(α+2) / ((α+2) * r₀^α) *
+           h_c^(β+1) / ((β+1) * h₀^β)
 end
 
 Extents.extent(model::PowerLawCylinderDensity{L}) where {L} =
