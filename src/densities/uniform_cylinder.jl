@@ -49,8 +49,8 @@ Extents.extent(model::UniformCylinderDensity{L}) where {L} =
 """
     onaxispotential(model::UniformCylinderDensity, z)
 
-Potential for test point at (0, φ, z).
-Technically φ is not well-defined for s=0, but it's irrelevant here.
+Potential for test point at ``(0, φ, z)``.
+Technically ``φ`` is not well-defined for ``s=0``, but it's irrelevant here.
 """
 function onaxispotential(model::UniformCylinderDensity{L}, z::L) where {L}
     R = model.r_c
