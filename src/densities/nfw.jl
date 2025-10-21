@@ -3,7 +3,7 @@
 """
 $(TYPEDEF)
 
-# Fields
+### Fields
 $(TYPEDFIELDS)
 """
 Base.@kwdef struct NFWDensity{L,MD} <: MassDensityModel

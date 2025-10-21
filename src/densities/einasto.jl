@@ -3,7 +3,7 @@
 """
 $(TYPEDEF)
 
-# Fields
+### Fields
 $(TYPEDFIELDS)
 
 See [Einasto, J. and Haud, U., “Galactic models with massive corona. I. Method”,

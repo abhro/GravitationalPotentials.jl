@@ -5,7 +5,7 @@ $(TYPEDEF)
 
 Model for a uniform density sphere centered at the origin.
 
-# Fields
+### Fields
 $(TYPEDFIELDS)
 
 See also [the implementation of `mass_density` for this type](@ref mass_density(::UniformSphereDensity, ::Any, ::Any, ::Any)).

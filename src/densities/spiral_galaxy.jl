@@ -9,7 +9,7 @@ with the bulge density dominating in the overlap.
 The bulge is modeled as a uniform density sphere,
 and the disk is modeled as a uniform density cylinder.
 
-# Fields
+### Fields
 $(TYPEDFIELDS)
 
 See also [the implementation of `mass_density` for this type](@ref mass_density(::SpiralGalaxyDensity, ::Any, ::Any, ::Any)).

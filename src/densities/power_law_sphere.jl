@@ -5,7 +5,7 @@ $(TYPEDEF)
 
 Model for a sphere with a power law density centered at the origin.
 
-# Fields
+### Fields
 $(TYPEDFIELDS)
 
 See also [the implementation of `mass_density` for this type](@ref mass_density(::PowerLawSphereDensity, ::Any, ::Any, ::Any)).
