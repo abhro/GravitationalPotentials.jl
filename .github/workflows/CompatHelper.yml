@@ -12,15 +12,10 @@ jobs:
     steps:
       - name: Install CompatHelper
         shell: julia --color=yes {0}
-        run: |
-          using Pkg
-          Pkg.add("CompatHelper")
+        run: using Pkg; Pkg.add("CompatHelper")
       - name: Run CompatHelper
         shell: julia --color=yes {0}
-        run: |
-          using CompatHelper
-          CompatHelper.main()
+        run: using CompatHelper; CompatHelper.main()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COMPATHELPER_PRIV: ${{ secrets.DOCUMENTER_KEY }}
-
