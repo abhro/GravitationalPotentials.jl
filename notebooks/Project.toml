@@ -7,3 +7,9 @@ WGLMakie = "276b4fcb-3e11-5398-bf8b-a0c2d153d008"
 
 [sources.GravitationalPotentials]
 path = ".."
+
+[compat]
+CairoMakie = "0.15.8"
+Pluto = "0.20.21"
+PlutoUI = "0.7.77"
+WGLMakie = "0.13.8"
