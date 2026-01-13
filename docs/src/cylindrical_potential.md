@@ -14,8 +14,8 @@ In general, we can get the gravitational potential as
 where each ``\mathbf{r}' = (s', φ', z')`` is a source point inside the cylinder, and the density function is
 ```math
 ρ(\mathbf{r}) = \begin{cases}
-ρ_0, & \text{if } \mathbf{r} \in \text{cylinder} \\
-0, & \text{if } \mathbf{r} \notin \text{cylinder}
+ρ_0, & \text{if } \mathbf{r} ∈ \text{cylinder} \\
+0,   & \text{if } \mathbf{r} ∉ \text{cylinder}
 \end{cases}
 ```
 
@@ -49,7 +49,8 @@ Plugging in the bounds for ``s'``, we have
 We can now use two more tabulated integrals:
 ```math
 \begin{align*}
-\int \sqrt{k + (p - x)^2} dx &= \frac{x-p}{2} \sqrt{k + (p - x)^2} - \frac{k^2}{2} \operatorname{artanh} \left(\frac{p-x}{\sqrt{k + (p - x)^2}}\right) + C \\
+\int \sqrt{k + (p - x)^2} dx
+    &= \frac{x-p}{2} \sqrt{k + (p - x)^2} - \frac{k^2}{2} \operatorname{artanh} \left(\frac{p-x}{\sqrt{k + (p - x)^2}}\right) + C \\
 \int \left|p-x\right| dx &= \frac{x (2p-x) \operatorname{sgn}(p-x)}{2} + C
 \end{align*}
 ```
@@ -89,4 +90,30 @@ and we get
 
 ## Case 2: test-point on the xy-plane
 
-TODO
+Consider the point ``\mathbf{r} = (s, φ, 0)``.
+
+```math
+\begin{align*}
+\Phi(\mathbf{r}) = -G ∫_{-H}^H dz' ∫_0^R ds' ∫_0^{2π} s' \, dφ' \frac{ρ_0}{\sqrt{s^2 + s'^2 - 2 s s' \cos(φ - φ') + z'^2}}
+\end{align*}
+```
+
+Tabulated integral
+```math
+∫ \frac{dφ'}{\sqrt{K^2 - 2 s s' \cos(φ - φ')}} = - \frac{2}{\sqrt{K^2 - 2 s s'}} F{\left(\frac{φ-φ'}{2} \bigg| \frac{4 s s'}{2 s s' - K^2}\right)}
+```
+where ``F`` is the hypergeometric function.
+
+And
+```math
+\begin{align*}
+∫_{-H}^H \frac{dz'}{\sqrt{A^2 + z'^2}}
+&= \left.\operatorname{artanh}\left(\frac{z'}{\sqrt{A^2 + z'^2}}\right)\right|_{-H}^H \\
+&= \operatorname{artanh}\left(\frac{H}{\sqrt{A^2 + H^2}}\right)
+ - \operatorname{artanh}\left(-\frac{H}{\sqrt{A^2 + H^2}}\right) \\
+&= 2 \operatorname{artanh}\left(\frac{H}{\sqrt{A^2 + H^2}}\right)
+\end{align*}
+```
+where the last equality comes from the fact that ``\operatorname{artanh}`` is an odd function.
+
+TODO: rest of the derivation.
