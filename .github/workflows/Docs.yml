@@ -27,6 +27,11 @@ jobs:
         with:
           version: '1'
       - uses: julia-actions/cache@v2
+      - name: Set up environment
+        shell: julia --color=yes --project=docs {0}
+        run: import Pkg; Pkg.instantiate()
+        env:
+          JULIA_PKG_PRECOMPILE_AUTO: 0
       - name: Build and deploy
         uses: julia-actions/julia-docdeploy@v1
         env:
