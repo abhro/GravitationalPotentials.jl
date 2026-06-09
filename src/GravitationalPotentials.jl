@@ -8,6 +8,7 @@ using PhysicalConstants.CODATA2022: G
 
 include("densities.jl")
 include("potentials.jl")
+include("integrators.jl")
 
 export mass_density
 export MassDensityModel
