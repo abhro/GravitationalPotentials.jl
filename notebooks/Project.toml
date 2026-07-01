@@ -10,6 +10,6 @@ path = ".."
 
 [compat]
 CairoMakie = "0.15.8"
-Pluto = "0.20.21"
+Pluto = "0.20.21, 1.0"
 PlutoUI = "0.7.77"
 WGLMakie = "0.13.8"
