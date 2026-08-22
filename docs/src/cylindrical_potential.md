@@ -28,12 +28,12 @@ d^3 \mathbf{r}' &= s' \, ds' \, dφ' \, dz'
 \end{align*}
 ```
 
-If we characterize the cylinder as having radius ``R`` and height ``2H``, the integral becomes
+If we characterize the cylinder as having radius ``R`` and height ``H``, the integral becomes
 ```math
 \begin{align*}
-\Phi(\mathbf{r}) &= - G \int_0^{2π} dφ' \int_0^R s' \, ds' \int_{-H}^{H} dz' \frac{ρ_0}{\sqrt{s'^2 + (z - z')^2}} \\[1ex]
-&= - 2π G ρ_0 \int_{-H}^H dz' \int_0^R \frac{s' \, ds'}{\sqrt{s'^2 + (z - z')^2}} \\[1ex]
-&= - 2π G ρ_0 \int_{-H}^H dz' {\left[\sqrt{s'^2 + (z - z')^2}\right]}_{s'=0}^{s'=R}
+\Phi(\mathbf{r}) &= - G \int_0^{2π} dφ' \int_0^R s' \, ds' \int_0^H dz' \frac{ρ_0}{\sqrt{s'^2 + (z - z')^2}} \\[1ex]
+&= - 2π G ρ_0 \int_0^H dz' \int_0^R \frac{s' \, ds'}{\sqrt{s'^2 + (z - z')^2}} \\[1ex]
+&= - 2π G ρ_0 \int_0^H dz' {\left[\sqrt{s'^2 + (z - z')^2}\right]}_{s'=0}^{s'=R}
 \end{align*}
 ```
 where we made use of the tabulated integral
@@ -43,66 +43,60 @@ where we made use of the tabulated integral
 
 Plugging in the bounds for ``s'``, we have
 ```math
-\Phi(\mathbf{r}) = -2π G ρ_0 \int_{-H}^H dz' \left(\sqrt{R^2 + (z - z')^2} - \left|z - z'\right|\right)
+\Phi(\mathbf{r}) = -2π G ρ_0 \int_0^H dz' \left(\sqrt{R^2 + (z - z')^2} - \left|z - z'\right|\right)
 ```
 
 We can now use two more tabulated integrals:
 ```math
 \begin{align*}
-\int \sqrt{k + (p - x)^2} dx
-    &= \frac{x-p}{2} \sqrt{k + (p - x)^2} - \frac{k^2}{2} \operatorname{artanh} \left(\frac{p-x}{\sqrt{k + (p - x)^2}}\right) + C \\
-\int \left|p-x\right| dx &= \frac{x (2p-x) \operatorname{sgn}(p-x)}{2} + C
+-\int \sqrt{k + (p - x)^2} \, dx
+    &= \frac{1}{2} \left[(p-x) \sqrt{k + (p - x)^2} + k^2 \operatorname{artanh} \left(\frac{p-x}{\sqrt{k + (p - x)^2}}\right)\right] + C \\
+\int \left|p-x\right| dx &= \frac{1}{2} x (2p-x) \operatorname{sgn}(p-x) + C
 \end{align*}
 ```
 and we get
 ```math
 \begin{align*}
-\Phi(\mathbf{r}) = - 2π G ρ_0 \Biggl[
-    &\frac{z' - z}{2} \sqrt{R^2 + (z-z')^2} \\
-    &- \frac{R^2}{2} \operatorname{artanh} \left(\frac{z-z'}{\sqrt{R^2 + (z-z')^2}}\right)
-    - \frac{z' (2z - z') \operatorname{sgn}(p-x)}{2}
-\Biggr]_{z'=-H}^{z'=H}
+\Phi(\mathbf{r}) = 2π G ρ_0 \frac{1}{2} \Biggl[
+    &(z - z') \sqrt{R^2 + (z-z')^2} \\
+    &+ R^2 \operatorname{artanh} \left(\frac{z-z'}{\sqrt{R^2 + (z-z')^2}}\right)
+    + z' (2z - z') \operatorname{sgn}(z-z')
+\Biggr]_{z'=0}^{z'=H}
 \end{align*}
 ```
 ```math
 \begin{align*}
-\Phi(\mathbf{r}) = -G π ρ_0 &\Biggl[
-\hphantom{-}
-\hphantom{-}
-(H - z) \sqrt{R^2 + (z-H)^2} - R^2 \operatorname{artanh} \frac{z-H}{\sqrt{R^2 + (z-H)^2}} - H (2z-H) \operatorname{sgn}(z-H)
+\Phi(\mathbf{r}) = G π ρ_0 &\Biggl[
+(z - H) \sqrt{R^2 + (z-H)^2}
+- z \sqrt{R^2 + z^2}
 \\
 &
-- (-H-z) \sqrt{R^2 + (z+H)^2} + R^2 \operatorname{artanh} \frac{z+H}{\sqrt{R^2 + (z+H)^2}} - H (2z+H) \operatorname{sgn}(z+H)
-\Biggr]
-\end{align*}
-```
-```math
-\begin{align*}
-\Phi(\mathbf{r}) = - G π ρ_0 & \Biggl[
-    (z+H) \sqrt{R^2 + (z+H)^2} - (z-H) \sqrt{R^2 + (z-H)^2}
-\\ &
-    + R^2 \left(\operatorname{artanh}\frac{z+H}{\sqrt{R^2 + (z+H)^2}} - \operatorname{artanh}\frac{z-H}{\sqrt{R^2+(z-H)^2}}\right)
-\\ &
-    - H \left((2z+H) \operatorname{sgn}(z+H) + (2z-H) \operatorname{sgn}(z-H)\right)
++ R^2 \left(\operatorname{artanh} \frac{z-H}{\sqrt{R^2 + (z-H)^2}}
+- \operatorname{artanh} \frac{z}{\sqrt{R^2 + z^2}}\right)
+\\
+&
++ H \left[ (2z-H) \operatorname{sgn}(z-H)
+- 2z \operatorname{sgn}(z)\right]
 \Biggr]
 \end{align*}
 ```
 
 ## Case 2: test-point on the xy-plane
 
-Consider the point ``\mathbf{r} = (s, φ, 0)``.
+Consider the point ``\mathbf{r} = (s, 0, 0)``. (We can set ``φ=0`` because the
+mass distribution is azimuthally symmetric)
 
 ```math
 \begin{align*}
-\Phi(\mathbf{r}) = -G ∫_{-H}^H dz' ∫_0^R ds' ∫_0^{2π} s' \, dφ' \frac{ρ_0}{\sqrt{s^2 + s'^2 - 2 s s' \cos(φ - φ') + z'^2}}
+\Phi(\mathbf{r}) = -G ∫_{-H}^H dz' ∫_0^R ds' ∫_0^{2π} s' \, dφ' \frac{ρ_0}{\sqrt{s^2 + s'^2 - 2 s s' \cos(φ') + z'^2}}
 \end{align*}
 ```
 
 Tabulated integral
 ```math
-∫ \frac{dφ'}{\sqrt{K^2 - 2 s s' \cos(φ - φ')}} = - \frac{2}{\sqrt{K^2 - 2 s s'}} F{\left(\frac{φ-φ'}{2} \bigg| \frac{4 s s'}{2 s s' - K^2}\right)}
+∫ \frac{dφ'}{\sqrt{K^2 - 2 s s' \cos(φ')}} = - \frac{2}{\sqrt{K^2 - 2 s s'}} F{\left(\frac{φ'}{2}, \frac{4 s s'}{2 s s' - K^2}\right)}
 ```
-where ``F`` is the hypergeometric function.
+where ``F`` is the incomplete elliptic integral.
 
 And
 ```math
@@ -117,3 +111,20 @@ And
 where the last equality comes from the fact that ``\operatorname{artanh}`` is an odd function.
 
 TODO: rest of the derivation.
+
+## Distance formula
+For two points ``\mathbf{r}_1 = (x_1, y_1, z_1) = (s_1, φ_1, z_1)`` and
+``\mathbf{r}_2 = (x_2, y_2, z_2) = (s_2, φ_2, z_2)``, the distance (squared)
+betweeen the two points is
+
+```math
+\begin{align*}
+\left|\mathbf{r}_2 - \mathbf{r}_1\right|^2
+&= (x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2 \\[4pt]
+&= [s_2 \cos(φ_2) - s_1 \cos(φ_1)]^2 + [s_2 \sin(φ_2) - s_1 \sin(φ_1)]^2 + (z_2 - z_1)^2 \\[4pt]
+&= s_2^2 \cos^2(φ_2) + s_1^2 \cos^2(φ_1) - 2 s_1 s_2 \cos(φ_1) \cos(φ_2) \\
+&\;{}+ s_2^2 \sin^2(φ_2) + s_1^2 \sin^2(φ_1) - 2 s_1 s_2 \sin(φ_1) \sin(φ_2) + (z_2 - z_1)^2 \\[4pt]
+&= s_1^2 + s_2^2 - 2 s_1 s_2 \left[\cos(φ_1) \cos(φ_2) + \sin(φ_1) \sin(φ_2)\right] + (z_2 - z_1)^2 \\[4pt]
+&= s_1^2 + s_2^2 - 2 s_1 s_2 \cos(φ_1 - φ_2) + (z_2 - z_1)^2
+\end{align*}
+```

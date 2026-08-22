@@ -22,6 +22,7 @@ makedocs(;
         "Home" => "index.md",
         "API reference" => "api.md",
         "Cylindrical model potential" => "cylindrical_potential.md",
+        "Azimuthal integration" => "azimuthal_integration.md"
     ],
 )
 
